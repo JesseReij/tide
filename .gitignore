@@ -4,3 +4,4 @@ renders/
 .hyperframes/
 
 !prospects/*/landing/*.mp4
+dist/

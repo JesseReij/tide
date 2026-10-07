@@ -1,0 +1,9 @@
+{
+  "buildCommand": "node scripts/build-voorstel.mjs",
+  "outputDirectory": "dist",
+  "installCommand": "",
+  "framework": null,
+  "trailingSlash": true,
+  "redirects": [{ "source": "/", "destination": "https://www.tidecollective.nl", "permanent": false }],
+  "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }]
+}

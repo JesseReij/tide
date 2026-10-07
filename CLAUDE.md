@@ -72,6 +72,7 @@ The package contents (Basis, Getij, Stroming, Springtij) are not in this repo ye
 
 - `brand/tide/`: TIDE house style (tokens, fonts, wave)
 - `research/`: research we can reuse (for example `pricing.md`, animation prices in NL)
+- `voorstel.json` + `scripts/build-voorstel.mjs` + `vercel.json`: the site voorstel.tidecollective.nl. Add a line to `voorstel.json` to put a new pitch online at `/<slug>/`. Vercel project: `tide-voorstel`.
 - `prospects/<client>/`: one folder per prospect, with `research.md`, `ideas.md`, scripts, `animation-*/` (HyperFrames projects) and `landing/` (pitch page)
 
 ## Pitch format per prospect
