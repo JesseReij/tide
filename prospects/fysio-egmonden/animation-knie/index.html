@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <script src="./gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Albert Sans"; font-weight: 400; src: url("./fonts/albert-sans-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 500; src: url("./fonts/albert-sans-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 600; src: url("./fonts/albert-sans-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 700; src: url("./fonts/albert-sans-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 800; src: url("./fonts/albert-sans-latin-800-normal.woff2") format("woff2"); }
+
+      /* Client style: Fysiotherapie de Egmonden (from their CSS) */
+      :root {
+        --dark: #002e38;
+        --dark-2: #0b3f4b;
+        --green: #aaba2c;
+        --blue: #7abcce;
+        --white: #ffffff;
+        --muted: #a9c3c9;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--dark); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Albert Sans", sans-serif; color: var(--white); }
+
+      .ring { position: absolute; border-radius: 50%; border: 3px solid rgba(122, 188, 206, 0.18); }
+      #ring1 { width: 900px; height: 900px; left: -380px; top: -300px; }
+      #ring2 { width: 640px; height: 640px; right: -260px; bottom: -200px; border-color: rgba(170, 186, 44, 0.2); }
+
+      .txt { position: absolute; left: 90px; right: 90px; top: 800px; text-align: center; }
+      .headline { font-size: 80px; line-height: 1.06; font-weight: 800; letter-spacing: -0.02em; }
+      .sub { margin-top: 24px; font-size: 42px; font-weight: 500; color: var(--muted); }
+      .line { display: block; overflow: hidden; padding-bottom: 8px; }
+      .line > span { display: inline-block; }
+      .g { color: var(--green); }
+      .b { color: var(--blue); }
+
+      #leg { position: absolute; left: 340px; top: 110px; width: 400px; height: 620px; }
+
+      #link { position: absolute; left: 0; top: 200px; width: 1080px; height: 420px; }
+      .node-label { font-family: "Albert Sans", sans-serif; font-size: 30px; font-weight: 600; fill: var(--white); }
+      .node-sub { font-family: "Albert Sans", sans-serif; font-size: 24px; font-weight: 500; fill: var(--muted); }
+
+      #steps { position: absolute; left: 0; top: 260px; width: 1080px; height: 360px; }
+      .step-label { font-family: "Albert Sans", sans-serif; font-size: 34px; font-weight: 700; fill: var(--white); }
+
+      #walker { position: absolute; left: 0; top: 230px; width: 260px; height: 480px; }
+      #ground { position: absolute; left: 0; right: 0; top: 700px; height: 6px; background: rgba(122, 188, 206, 0.35); border-radius: 3px; }
+
+      #end { position: absolute; left: 90px; right: 90px; top: 250px; text-align: center; }
+      #end-tag { font-size: 44px; font-weight: 600; color: var(--muted); }
+      #end-title { margin-top: 12px; font-size: 96px; line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; }
+      #end-locs { margin-top: 60px; font-size: 38px; font-weight: 500; color: var(--blue); line-height: 1.5; }
+      #cta { display: inline-block; margin-top: 56px; padding: 30px 60px; border-radius: 999px; background: var(--green); color: var(--dark); font-size: 46px; font-weight: 800; }
+
+      #demo-label { position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; font-size: 28px; color: var(--muted); letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1080" data-height="1350">
+      <div id="ring1" class="ring clip" data-start="0" data-duration="24" data-track-index="0"></div>
+      <div id="ring2" class="ring clip" data-start="0" data-duration="24" data-track-index="1"></div>
+
+      <!-- Scene 1: a leg bending at the knee -->
+      <svg id="leg" class="clip" data-start="0" data-duration="5" data-track-index="2" viewBox="0 0 400 620">
+        <g id="thigh">
+          <rect x="150" y="20" width="100" height="280" rx="50" fill="#e8f1f3" />
+          <g id="shin">
+            <rect x="160" y="270" width="80" height="270" rx="40" fill="#e8f1f3" />
+            <rect x="150" y="500" width="150" height="60" rx="30" fill="#e8f1f3" />
+          </g>
+          <circle id="knee" cx="200" cy="290" r="58" fill="none" stroke="var(--blue)" stroke-width="12" />
+          <circle id="knee-glow" cx="200" cy="290" r="58" fill="var(--blue)" opacity="0" />
+        </g>
+      </svg>
+      <div id="t1" class="txt clip" data-start="0" data-duration="5" data-track-index="3">
+        <div class="headline"><span class="line"><span>Een nieuwe <span class="g">knie</span></span></span><span class="line"><span>of <span class="b">heup</span>?</span></span></div>
+      </div>
+
+      <!-- Scene 2: hospital and practice, connected -->
+      <svg id="link" class="clip" data-start="4.8" data-duration="5.6" data-track-index="4" viewBox="0 0 1080 420">
+        <g id="node-a">
+          <circle cx="250" cy="170" r="110" fill="var(--dark-2)" stroke="var(--blue)" stroke-width="6" />
+          <rect x="230" y="110" width="40" height="120" rx="8" fill="var(--blue)" />
+          <rect x="190" y="150" width="120" height="40" rx="8" fill="var(--blue)" />
+          <text x="250" y="335" text-anchor="middle" class="node-label">Orthopeden</text>
+          <text x="250" y="372" text-anchor="middle" class="node-sub">Noordwest Ziekenhuisgroep</text>
+        </g>
+        <g id="node-b">
+          <circle cx="830" cy="170" r="110" fill="var(--dark-2)" stroke="var(--green)" stroke-width="6" />
+          <circle cx="830" cy="125" r="24" fill="var(--green)" />
+          <path d="M790 230 Q830 140 870 230" stroke="var(--green)" stroke-width="22" stroke-linecap="round" fill="none" />
+          <text x="830" y="335" text-anchor="middle" class="node-label">Fysiotherapie</text>
+          <text x="830" y="372" text-anchor="middle" class="node-sub">de Egmonden</text>
+        </g>
+        <line id="link-line" x1="370" y1="170" x2="710" y2="170" stroke="#e8f1f3" stroke-width="8" stroke-linecap="round" stroke-dasharray="340" stroke-dashoffset="340" />
+        <circle id="pulse" cx="370" cy="170" r="16" fill="var(--green)" opacity="0" />
+      </svg>
+      <div id="t2" class="txt clip" data-start="5" data-duration="5.4" data-track-index="5">
+        <div class="headline" style="font-size: 70px"><span class="line"><span>Wij werken nauw samen</span></span><span class="line"><span>met de <span class="b">orthopeden</span></span></span><span class="line"><span>van het ziekenhuis.</span></span></div>
+      </div>
+
+      <!-- Scene 3: three steps -->
+      <svg id="steps" class="clip" data-start="10.4" data-duration="5.4" data-track-index="6" viewBox="0 0 1080 360">
+        <line x1="180" y1="140" x2="900" y2="140" stroke="rgba(232,241,243,0.25)" stroke-width="8" stroke-linecap="round" />
+        <line id="progress" x1="180" y1="140" x2="900" y2="140" stroke="var(--green)" stroke-width="8" stroke-linecap="round" stroke-dasharray="720" stroke-dashoffset="720" />
+        <g class="step" id="st1"><circle cx="180" cy="140" r="44" fill="var(--dark-2)" stroke="var(--blue)" stroke-width="6" /><text x="180" y="152" text-anchor="middle" class="step-label">1</text><text x="180" y="250" text-anchor="middle" class="step-label">Operatie</text></g>
+        <g class="step" id="st2"><circle cx="540" cy="140" r="44" fill="var(--dark-2)" stroke="var(--green)" stroke-width="6" /><text x="540" y="152" text-anchor="middle" class="step-label">2</text><text x="540" y="250" text-anchor="middle" class="step-label">Revalidatie</text></g>
+        <g class="step" id="st3"><circle cx="900" cy="140" r="44" fill="var(--green)" /><text x="900" y="152" text-anchor="middle" class="step-label" style="fill: var(--dark)">3</text><text x="900" y="250" text-anchor="middle" class="step-label">Weer bewegen</text></g>
+      </svg>
+      <div id="t3" class="txt clip" data-start="10.6" data-duration="5.2" data-track-index="7">
+        <div class="headline" style="font-size: 72px"><span class="line"><span>Daarna begeleiden wij</span></span><span class="line"><span>uw <span class="g">revalidatie</span>,</span></span><span class="line"><span>stap voor stap.</span></span></div>
+      </div>
+
+      <!-- Scene 4: walking person -->
+      <div id="ground" class="clip" data-start="15.8" data-duration="3.9" data-track-index="8"></div>
+      <svg id="walker" class="clip" data-start="15.8" data-duration="3.9" data-track-index="9" viewBox="0 0 260 480">
+        <g id="body">
+          <g id="arm-back"><rect x="118" y="120" width="26" height="130" rx="13" fill="var(--blue)" /></g>
+          <g id="leg-back"><rect x="110" y="260" width="34" height="190" rx="17" fill="var(--blue)" /></g>
+          <rect x="100" y="110" width="60" height="170" rx="30" fill="#e8f1f3" />
+          <g id="leg-front"><rect x="116" y="260" width="34" height="190" rx="17" fill="#e8f1f3" /><circle id="new-knee" cx="133" cy="355" r="14" fill="var(--green)" /></g>
+          <g id="arm-front"><rect x="116" y="120" width="26" height="130" rx="13" fill="#e8f1f3" /></g>
+          <circle cx="130" cy="60" r="46" fill="#e8f1f3" />
+        </g>
+      </svg>
+      <div id="t4" class="txt clip" data-start="15.8" data-duration="3.9" data-track-index="10">
+        <div class="headline"><span class="line"><span>Zodat u snel weer</span></span><span class="line"><span>in <span class="g">beweging</span> bent.</span></span></div>
+      </div>
+
+      <!-- Scene 5: end card -->
+      <div id="end" class="clip" data-start="19.6" data-duration="4.4" data-track-index="11">
+        <div id="end-tag">Revalidatie na een nieuwe knie of heup</div>
+        <div id="end-title">Fysiotherapie<br /><span class="g">de Egmonden</span></div>
+        <div id="end-locs">Egmond aan Zee · Egmond aan den Hoef<br />Egmond-Binnen</div>
+        <div id="cta">Bel of app 072 506 4258</div>
+      </div>
+
+      <div id="demo-label" class="clip" data-start="0" data-duration="24" data-track-index="12">Voorbeeld door TIDE · tidecollective.nl</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const lines = (sel, t) => tl.fromTo(sel + " .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.13, ease: "power3.out" }, t);
+      const out = (sel, t) => tl.to(sel + " .line > span", { yPercent: -110, duration: 0.4, stagger: 0.06, ease: "power2.in" }, t);
+
+      gsap.set("#thigh", { transformOrigin: "200px 70px" });
+      gsap.set("#shin", { transformOrigin: "200px 290px" });
+      ["#arm-back", "#arm-front"].forEach((a) => gsap.set(a, { transformOrigin: "50% 8%" }));
+      ["#leg-back", "#leg-front"].forEach((l) => gsap.set(l, { transformOrigin: "50% 5%" }));
+      gsap.set("#walker", { x: -300 });
+      gsap.set(["#steps", "#link"], { opacity: 0 });
+
+      tl.fromTo("#ring1", { rotation: 0 }, { rotation: 25, duration: 24, ease: "none" }, 0)
+        .fromTo("#ring2", { scale: 1 }, { scale: 1.12, duration: 24, ease: "sine.inOut" }, 0)
+
+      // Scene 1: leg appears and bends twice, knee lights up
+        .fromTo("#leg", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.1)
+        .to("#shin", { rotation: 55, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0.9)
+        .to("#knee-glow", { opacity: 0.35, duration: 0.45, yoyo: true, repeat: 5, ease: "sine.inOut" }, 1.2);
+      lines("#t1", 0.5);
+      out("#t1", 4.4);
+      tl.to("#leg", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, 4.4)
+
+      // Scene 2: two nodes, line draws, pulse travels
+        .set("#link", { opacity: 1 }, 4.8)
+        .fromTo("#node-a", { scale: 0.6, opacity: 0, transformOrigin: "250px 170px" }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" }, 4.9)
+        .fromTo("#node-b", { scale: 0.6, opacity: 0, transformOrigin: "830px 170px" }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" }, 5.2)
+        .to("#link-line", { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 5.8)
+        .set("#pulse", { opacity: 1 }, 6.6)
+        .fromTo("#pulse", { attr: { cx: 370 } }, { attr: { cx: 710 }, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 2 }, 6.6)
+        .set("#pulse", { opacity: 0 }, 9.4);
+      lines("#t2", 5.1);
+      out("#t2", 9.9);
+      tl.to("#link", { opacity: 0, duration: 0.4 }, 10.0)
+
+      // Scene 3: steps fill in
+        .set("#steps", { opacity: 1 }, 10.4)
+        .fromTo("#steps .step", { scale: 0.5, opacity: 0, transformOrigin: "center" }, { scale: 1, opacity: 1, duration: 0.5, stagger: 0.25, ease: "back.out(1.7)" }, 10.5)
+        .to("#progress", { strokeDashoffset: 0, duration: 2.4, ease: "power1.inOut" }, 11.4)
+        .fromTo("#st3 circle", { scale: 1, transformOrigin: "900px 140px" }, { scale: 1.18, duration: 0.35, yoyo: true, repeat: 1, ease: "sine.inOut" }, 13.8);
+      lines("#t3", 10.7);
+      out("#t3", 15.3);
+      tl.to("#steps", { opacity: 0, duration: 0.4 }, 15.4);
+
+      // Scene 4: person walks across
+      tl.fromTo("#walker", { x: -300 }, { x: 1180, duration: 3.8, ease: "none" }, 15.8);
+      let flip = 1;
+      for (let t = 15.8; t < 19.6; t += 0.3) {
+        tl.to("#leg-front", { rotation: 22 * flip, duration: 0.3, ease: "sine.inOut" }, t)
+          .to("#leg-back", { rotation: -22 * flip, duration: 0.3, ease: "sine.inOut" }, t)
+          .to("#arm-front", { rotation: -18 * flip, duration: 0.3, ease: "sine.inOut" }, t)
+          .to("#arm-back", { rotation: 18 * flip, duration: 0.3, ease: "sine.inOut" }, t)
+          .to("#body", { y: flip > 0 ? -8 : 0, duration: 0.3, ease: "sine.inOut" }, t);
+        flip *= -1;
+      }
+      tl.fromTo("#ground", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 15.8);
+      lines("#t4", 16.0);
+      out("#t4", 19.2);
+
+      // Scene 5: end card
+      tl.fromTo("#end-tag", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 19.7)
+        .fromTo("#end-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 19.9)
+        .fromTo("#end-locs", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 20.5)
+        .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 20.9)
+        .to("#cta", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 21.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

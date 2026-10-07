@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="./gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Albert Sans"; font-weight: 500; src: url("./fonts/albert-sans-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 600; src: url("./fonts/albert-sans-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 700; src: url("./fonts/albert-sans-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Albert Sans"; font-weight: 800; src: url("./fonts/albert-sans-latin-800-normal.woff2") format("woff2"); }
+
+      /* Client style: Fysiotherapie de Egmonden */
+      :root { --dark: #002e38; --dark-2: #0b3f4b; --green: #aaba2c; --blue: #7abcce; --grey: #f2f2f2; --white: #ffffff; --muted: #a9c3c9; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--dark); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Albert Sans", sans-serif; color: var(--white); }
+
+      .ring { position: absolute; border-radius: 50%; }
+      #ring1 { width: 1100px; height: 1100px; left: -500px; top: -380px; border: 3px solid rgba(122, 188, 206, 0.18); }
+      #ring2 { width: 760px; height: 760px; right: -330px; bottom: -220px; border: 3px solid rgba(170, 186, 44, 0.22); }
+
+      .txt { position: absolute; left: 90px; right: 90px; top: 1060px; text-align: center; }
+      .headline { font-size: 100px; line-height: 1.04; font-weight: 800; letter-spacing: -0.025em; }
+      .sub { margin-top: 30px; font-size: 46px; font-weight: 500; color: var(--muted); line-height: 1.3; }
+      .line { display: block; overflow: hidden; padding-bottom: 8px; }
+      .line > span { display: inline-block; }
+      .g { color: var(--green); }
+      .b { color: var(--blue); }
+
+      /* Scene 1: ring that fills */
+      #goal { position: absolute; left: 290px; top: 380px; width: 500px; height: 500px; }
+
+      /* Scene 2: three cards */
+      #cards { position: absolute; left: 90px; right: 90px; top: 430px; display: flex; gap: 30px; justify-content: center; }
+      .card { width: 280px; padding: 40px 20px 34px; border-radius: 40px; background: var(--dark-2); border: 3px solid rgba(122, 188, 206, 0.35); text-align: center; }
+      .card svg { width: 130px; height: 130px; }
+      .card div { margin-top: 18px; font-size: 40px; font-weight: 700; }
+
+      /* Scene 3: covered */
+      #covered { position: absolute; left: 0; right: 0; top: 330px; text-align: center; }
+      #ins-card { display: inline-block; width: 660px; height: 400px; border-radius: 44px; background: var(--grey); position: relative; text-align: left; }
+      #ins-card .bar1 { position: absolute; left: 60px; top: 70px; width: 260px; height: 34px; border-radius: 17px; background: #cfdcdf; }
+      #ins-card .bar2 { position: absolute; left: 60px; top: 136px; width: 400px; height: 26px; border-radius: 13px; background: #dfe8ea; }
+      #ins-card .bar3 { position: absolute; left: 60px; top: 186px; width: 320px; height: 26px; border-radius: 13px; background: #dfe8ea; }
+      #ins-card .label { position: absolute; left: 60px; bottom: 60px; font-size: 40px; font-weight: 800; color: var(--dark); }
+      #stamp { position: absolute; right: -50px; bottom: -60px; width: 240px; height: 240px; }
+
+      /* Scene 4: end card */
+      #end { position: absolute; left: 90px; right: 90px; top: 420px; text-align: center; }
+      #end-kicker { font-size: 50px; font-weight: 600; color: var(--muted); line-height: 1.3; }
+      #end-title { margin-top: 50px; font-size: 104px; line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; }
+      #end-locs { margin-top: 60px; font-size: 42px; font-weight: 500; color: var(--blue); line-height: 1.5; }
+      #cta { display: inline-block; margin-top: 70px; padding: 34px 64px; border-radius: 999px; background: var(--green); color: var(--dark); font-size: 52px; font-weight: 800; }
+
+      #demo-label { position: absolute; left: 0; right: 0; bottom: 80px; text-align: center; font-size: 30px; color: var(--muted); letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <div id="ring1" class="ring clip" data-start="0" data-duration="20" data-track-index="0"></div>
+      <div id="ring2" class="ring clip" data-start="0" data-duration="20" data-track-index="1"></div>
+
+      <!-- Scene 1 -->
+      <svg id="goal" class="clip" data-start="0" data-duration="4.4" data-track-index="2" viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="200" fill="none" stroke="rgba(232,241,243,0.15)" stroke-width="34" />
+        <circle id="goal-ring" cx="250" cy="250" r="200" fill="none" stroke="var(--green)" stroke-width="34" stroke-linecap="round" transform="rotate(-90 250 250)" stroke-dasharray="1257" stroke-dashoffset="1257" />
+        <path id="heart" d="M250 345 C185 300 160 265 160 230 C160 202 182 182 207 182 C226 182 241 192 250 208 C259 192 274 182 293 182 C318 182 340 202 340 230 C340 265 315 300 250 345 Z" fill="var(--blue)" />
+      </svg>
+      <div id="t1" class="txt clip" data-start="0" data-duration="4.4" data-track-index="3">
+        <div class="headline"><span class="line"><span>Wilt u <span class="g">gezonder</span></span></span><span class="line"><span>leven?</span></span></div>
+      </div>
+
+      <!-- Scene 2 -->
+      <div id="cards" class="clip" data-start="4.4" data-duration="4.8" data-track-index="4">
+        <div class="card">
+          <svg viewBox="0 0 130 130"><path d="M65 38 C50 20 18 26 18 62 C18 96 44 118 58 118 C62 118 64 116 65 116 C66 116 68 118 72 118 C86 118 112 96 112 62 C112 26 80 20 65 38 Z" fill="var(--green)" /><path d="M65 38 C66 26 72 16 84 10" stroke="var(--blue)" stroke-width="8" stroke-linecap="round" fill="none" /></svg>
+          <div>Eten</div>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 130 130"><circle cx="78" cy="20" r="13" fill="var(--blue)" /><path d="M72 40 L52 74 L74 84 L62 120 M58 56 L32 64 M70 48 L98 60 M52 74 L28 104" stroke="var(--blue)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg>
+          <div>Bewegen</div>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="48" fill="none" stroke="var(--white)" stroke-width="10" /><path d="M65 38 V65 L84 78" stroke="var(--green)" stroke-width="10" stroke-linecap="round" fill="none" /></svg>
+          <div>Gewoontes</div>
+        </div>
+      </div>
+      <div id="t2" class="txt clip" data-start="4.6" data-duration="4.6" data-track-index="5">
+        <div class="headline" style="font-size: 88px"><span class="line"><span>Ons <span class="b">leefstijl­programma</span></span></span><span class="line"><span>helpt u op weg.</span></span></div>
+        <p class="sub"><span class="line"><span>De gecombineerde leefstijlinterventie (GLI)</span></span></p>
+      </div>
+
+      <!-- Scene 3 -->
+      <div id="covered" class="clip" data-start="9.2" data-duration="5.4" data-track-index="6">
+        <div id="ins-card">
+          <div class="bar1"></div><div class="bar2"></div><div class="bar3"></div>
+          <div class="label">Basisverzekering</div>
+          <svg id="stamp" viewBox="0 0 240 240">
+            <circle cx="120" cy="120" r="110" fill="var(--green)" />
+            <path id="check" d="M70 122 L105 156 L172 88" stroke="var(--dark)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="160" stroke-dashoffset="160" />
+          </svg>
+        </div>
+      </div>
+      <div id="t3" class="txt clip" data-start="9.4" data-duration="5.2" data-track-index="7">
+        <div class="headline"><span class="line"><span><span class="g">Vergoed</span> vanuit de</span></span><span class="line"><span>basisverzekering.</span></span></div>
+        <p class="sub"><span class="line"><span>Bij overgewicht, met een verwijzing</span></span><span class="line"><span>van uw huisarts.</span></span></p>
+      </div>
+
+      <!-- Scene 4 -->
+      <div id="end" class="clip" data-start="14.6" data-duration="5.4" data-track-index="8">
+        <div id="end-kicker">Vraag ernaar bij uw huisarts<br />of bij ons</div>
+        <div id="end-title">Fysiotherapie<br /><span class="g">de Egmonden</span></div>
+        <div id="end-locs">Egmond aan Zee · Egmond aan den Hoef<br />Egmond-Binnen</div>
+        <div id="cta">Bel of app 072 506 4258</div>
+      </div>
+
+      <div id="demo-label" class="clip" data-start="0" data-duration="20" data-track-index="9">Voorbeeld door TIDE · tidecollective.nl</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const lines = (sel, t) => tl.fromTo(sel + " .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.13, ease: "power3.out" }, t);
+      const out = (sel, t) => tl.to(sel + " .line > span", { yPercent: -110, duration: 0.4, stagger: 0.06, ease: "power2.in" }, t);
+      gsap.set(["#cards", "#covered"], { opacity: 0 });
+
+      tl.fromTo("#ring1", { rotation: 0 }, { rotation: -30, duration: 20, ease: "none" }, 0)
+        .fromTo("#ring2", { scale: 1 }, { scale: 1.15, duration: 20, ease: "sine.inOut" }, 0)
+
+      // Scene 1: goal ring fills around a heart
+        .fromTo("#goal", { scale: 0.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.5)" }, 0.1)
+        .to("#goal-ring", { strokeDashoffset: 120, duration: 2.6, ease: "power2.inOut" }, 0.7)
+        .fromTo("#heart", { scale: 1, transformOrigin: "250px 260px" }, { scale: 1.12, duration: 0.4, yoyo: true, repeat: 5, ease: "sine.inOut" }, 1.0);
+      lines("#t1", 0.5);
+      out("#t1", 3.9);
+      tl.to("#goal", { opacity: 0, scale: 0.85, duration: 0.4, ease: "power2.in" }, 3.9)
+
+      // Scene 2: three cards
+        .set("#cards", { opacity: 1 }, 4.4)
+        .fromTo("#cards .card", { y: 140, opacity: 0, rotation: 5 }, { y: 0, opacity: 1, rotation: 0, duration: 0.7, stagger: 0.2, ease: "back.out(1.5)" }, 4.5)
+        .to("#cards .card", { y: -14, duration: 0.8, stagger: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut" }, 5.8);
+      lines("#t2", 4.7);
+      out("#t2", 8.7);
+      tl.to("#cards", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, 8.7)
+
+      // Scene 3: insurance card with a check stamp
+        .set("#covered", { opacity: 1 }, 9.2)
+        .fromTo("#ins-card", { y: 120, opacity: 0, rotation: -4 }, { y: 0, opacity: 1, rotation: -2, duration: 0.7, ease: "power3.out" }, 9.3)
+        .fromTo("#stamp", { scale: 2.2, opacity: 0, rotation: -30, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(2)" }, 10.2)
+        .to("#check", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 10.6);
+      lines("#t3", 9.5);
+      out("#t3", 14.1);
+      tl.to("#covered", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, 14.1)
+
+      // Scene 4: end card
+        .fromTo("#end-kicker", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 14.7)
+        .fromTo("#end-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 15.0)
+        .fromTo("#end-locs", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 15.6)
+        .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 16.0)
+        .to("#cta", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.9);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
