@@ -15,6 +15,6 @@ Client-facing text (Dutch). These go on the pitch landing page.
 | 9 | **Nazorg na een operatie** | 16:9 | 60 s | Voor na de operatie, via WhatsApp of e-mail. Minder telefoontjes met dezelfde vragen. |
 | 10 | **Wachtkamerscherm** | 16:9 loop | 2 min | Een rustige loop met tips, het team, openingstijden en de lopende actie. |
 
-Pilot: idea 1 (Seniorscreening). It uses their real promo and is short enough to show the quality fast.
+Made for the pitch: idea 3 (orthopaedics, informative) and idea 1 (senior screening, price).
 
 Note: the "60% of a tooth is below the gum line" claim in idea 5 must be checked with a source (or with the vet) before we publish it.
