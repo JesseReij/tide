@@ -1,0 +1,30 @@
+/* TIDE house style tokens. Source of truth for every page, post and animation.
+   Copy this file plus fonts/ next to a page, or link it with a relative path. */
+
+@font-face { font-family: "Bebas Neue"; font-weight: 400; src: url("./fonts/bebas-neue-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Work Sans"; font-weight: 400; src: url("./fonts/work-sans-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Work Sans"; font-weight: 500; src: url("./fonts/work-sans-latin-500-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Work Sans"; font-weight: 600; src: url("./fonts/work-sans-latin-600-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Work Sans"; font-weight: 700; src: url("./fonts/work-sans-latin-700-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; src: url("./fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; src: url("./fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-display: swap; }
+
+:root {
+  /* Colours (set A, see README: not yet aligned with the site) */
+  --tide-paper: #FAF6EF;      /* background */
+  --tide-surface: #F2E9DA;    /* cards, blocks */
+  --tide-surface-2: #E9DFCD;  /* borders, second surface */
+  --tide-ink: #1C1814;        /* headings, dark sections */
+  --tide-text: #5E564A;       /* body text */
+  --tide-label: #8E8474;      /* labels, captions */
+  --tide-accent: #C1622F;     /* terracotta: wave, buttons, highlights */
+
+  /* Type */
+  --tide-font-display: "Bebas Neue", Impact, sans-serif;   /* headings, always uppercase by nature */
+  --tide-font-body: "Work Sans", system-ui, sans-serif;    /* text */
+  --tide-font-mono: "IBM Plex Mono", ui-monospace, monospace; /* kickers, labels */
+
+  /* Wave motion */
+  --tide-wave-ease: cubic-bezier(.4, 0, .2, 1);
+  --tide-wave-draw: 1.3s;
+}

@@ -1,5 +1,6 @@
 {
   "_comment": "Pitch pages on voorstel.tidecollective.nl. Key = URL path, value = folder with index.html.",
   "jdejong": "prospects/jdejong-dierenartsen/landing",
-  "fysio-egmonden": "prospects/fysio-egmonden/landing"
+  "fysio-egmonden": "prospects/fysio-egmonden/landing",
+  "eg-mondhygiene": "prospects/eg-mondhygiene/landing"
 }

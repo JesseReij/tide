@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="./gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 600; src: url("./fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Montserrat"; font-weight: 700; src: url("./fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("./fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Lato"; font-weight: 400; src: url("./fonts/lato-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Lato"; font-weight: 700; src: url("./fonts/lato-latin-700-normal.woff2") format("woff2"); }
+
+      :root { --teal: #2f6f73; --sage: #8faea0; --beige: #e6ded6; --bg: #f6f7f5; --text: #3a4540; --tan: #c8b8a6; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Lato", sans-serif; color: var(--text); }
+
+      #blob { position: absolute; left: 90px; top: 250px; width: 900px; height: 820px; border-radius: 52% 48% 55% 45% / 45% 55% 45% 55%; background: var(--beige); }
+
+      .txt { position: absolute; left: 90px; right: 90px; top: 1150px; text-align: center; }
+      .headline { font-family: "Montserrat", sans-serif; font-size: 92px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+      .sub { margin-top: 30px; font-size: 46px; line-height: 1.35; color: #5d6a64; }
+      .line { display: block; overflow: hidden; padding-bottom: 8px; }
+      .line > span { display: inline-block; }
+      .t { color: var(--teal); }
+
+      #phone { position: absolute; left: 340px; top: 400px; width: 400px; height: 520px; }
+
+      #checks { position: absolute; left: 140px; right: 140px; top: 440px; }
+      .check { display: flex; align-items: center; gap: 34px; background: #ffffff; border-radius: 28px; padding: 40px 44px; margin-bottom: 36px; box-shadow: 0 16px 50px rgba(58, 69, 64, 0.1); }
+      .check svg { width: 96px; height: 96px; flex: none; }
+      .check div { font-family: "Montserrat", sans-serif; font-size: 52px; font-weight: 700; line-height: 1.15; }
+
+      #tag { position: absolute; left: 290px; top: 420px; width: 500px; height: 520px; }
+
+      #end { position: absolute; left: 90px; right: 90px; top: 520px; text-align: center; }
+      #end-kick { font-size: 48px; color: #5d6a64; font-style: italic; }
+      #end-title { margin-top: 30px; font-family: "Montserrat", sans-serif; font-size: 96px; line-height: 1.04; font-weight: 800; color: var(--teal); letter-spacing: -0.03em; }
+      #end-addr { margin-top: 50px; font-size: 46px; line-height: 1.45; }
+      #cta { display: inline-block; margin-top: 70px; padding: 34px 64px; border-radius: 18px; background: var(--sage); color: var(--bg); font-family: "Montserrat", sans-serif; font-size: 52px; font-weight: 700; }
+
+      #demo-label { position: absolute; left: 0; right: 0; bottom: 80px; text-align: center; font-size: 30px; color: #7d8a84; letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <div id="blob" class="clip" data-start="0" data-duration="14.5" data-track-index="0"></div>
+
+      <!-- Scene 1: phone -->
+      <svg id="phone" class="clip" data-start="0" data-duration="4.8" data-track-index="1" viewBox="0 0 400 520">
+        <g id="handset">
+          <rect x="110" y="40" width="180" height="340" rx="34" fill="#ffffff" stroke="var(--teal)" stroke-width="10" />
+          <rect x="150" y="70" width="100" height="14" rx="7" fill="var(--beige)" />
+          <circle cx="200" cy="200" r="54" fill="var(--sage)" />
+          <path d="M178 182 C178 176 184 172 189 174 L196 178 C200 180 200 186 197 189 L193 193 C198 203 206 211 216 216 L220 212 C223 209 229 209 231 213 L235 220 C237 225 233 231 227 231 C198 230 178 210 178 182 Z" fill="#ffffff" />
+          <rect x="150" y="320" width="100" height="14" rx="7" fill="var(--beige)" />
+        </g>
+        <g id="waves" fill="none" stroke="var(--teal)" stroke-width="10" stroke-linecap="round">
+          <path class="w1" d="M320 150 Q345 200 320 250" />
+          <path class="w2" d="M350 120 Q390 200 350 280" />
+          <path class="w1" d="M80 150 Q55 200 80 250" />
+          <path class="w2" d="M50 120 Q10 200 50 280" />
+        </g>
+        <text x="200" y="460" text-anchor="middle" font-family="Montserrat" font-weight="700" font-size="40" fill="var(--teal)">072 506 95 70</text>
+      </svg>
+      <div id="t1" class="txt clip" data-start="0" data-duration="4.8" data-track-index="2">
+        <div class="headline" style="font-size: 84px"><span class="line"><span>Geen balie.</span></span><span class="line"><span>Direct uw <span class="t">mondhygiënist</span></span></span><span class="line"><span>aan de lijn.</span></span></div>
+      </div>
+
+      <!-- Scene 2: checks -->
+      <div id="checks" class="clip" data-start="4.8" data-duration="4.8" data-track-index="3">
+        <div class="check"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="46" fill="var(--sage)" /><path d="M28 50 L42 64 L70 34" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg><div>Geen verwijzing nodig</div></div>
+        <div class="check"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="46" fill="var(--sage)" /><path d="M28 50 L42 64 L70 34" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg><div>Geen wachtlijst</div></div>
+      </div>
+      <div id="t2" class="txt clip" data-start="5" data-duration="4.6" data-track-index="4">
+        <div class="headline"><span class="line"><span>Gewoon <span class="t">bellen</span></span></span><span class="line"><span>en een afspraak</span></span><span class="line"><span>maken.</span></span></div>
+      </div>
+
+      <!-- Scene 3: price tag -->
+      <svg id="tag" class="clip" data-start="9.6" data-duration="4.9" data-track-index="5" viewBox="0 0 500 520">
+        <g id="tag-body">
+          <path d="M120 80 L330 80 L440 210 L330 340 L120 340 C98 340 80 322 80 300 L80 120 C80 98 98 80 120 80 Z" fill="#ffffff" stroke="var(--teal)" stroke-width="10" stroke-linejoin="round" transform="rotate(-8 260 210)" />
+          <circle cx="345" cy="185" r="18" fill="var(--beige)" />
+          <text x="215" y="250" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="150" fill="var(--teal)" transform="rotate(-8 260 210)">€</text>
+        </g>
+        <g id="tag-check"><circle cx="380" cy="390" r="70" fill="var(--sage)" /><path id="tcheck" d="M350 392 L372 414 L414 370" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="100" stroke-dashoffset="100" /></g>
+      </svg>
+      <div id="t3" class="txt clip" data-start="9.8" data-duration="4.7" data-track-index="6">
+        <div class="headline" style="font-size: 80px"><span class="line"><span>Landelijk vastgestelde</span></span><span class="line"><span><span class="t">tarieven</span>.</span></span></div>
+        <p class="sub"><span class="line"><span>Geen verrassingen achteraf. Vraag ons</span></span><span class="line"><span>naar de vergoeding uit uw aanvullende verzekering.</span></span></p>
+      </div>
+
+      <!-- Scene 4: end -->
+      <div id="end" class="clip" data-start="14.5" data-duration="5.5" data-track-index="7">
+        <div id="end-kick">Al bijna 25 jaar een vertrouwd gezicht</div>
+        <div id="end-title">Eg&#8209;mondhygiëne<br />Praktijk</div>
+        <div id="end-addr">Lamoraalweg 55a<br />Egmond aan den Hoef</div>
+        <div id="cta">Bel 072 506 95 70</div>
+      </div>
+
+      <div id="demo-label" class="clip" data-start="0" data-duration="20" data-track-index="8">Voorbeeld door TIDE · tidecollective.nl</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const lines = (sel, t) => tl.fromTo(sel + " .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.12, ease: "power3.out" }, t);
+      const out = (sel, t) => tl.to(sel + " .line > span", { yPercent: -110, duration: 0.4, stagger: 0.05, ease: "power2.in" }, t);
+      gsap.set(["#checks", "#tag"], { opacity: 0 });
+
+      tl.fromTo("#blob", { scale: 0.92, rotation: 3 }, { scale: 1.05, rotation: -4, duration: 14.5, ease: "sine.inOut" }, 0)
+
+      // Scene 1: phone rings
+        .fromTo("#phone", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.1)
+        .fromTo("#handset", { rotation: -6, transformOrigin: "200px 210px" }, { rotation: 6, duration: 0.09, yoyo: true, repeat: 15, ease: "sine.inOut" }, 0.9)
+        .fromTo("#waves path", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.12, yoyo: true, repeat: 5 }, 0.9)
+        .set("#handset", { rotation: 0 }, 2.4);
+      lines("#t1", 0.5);
+      out("#t1", 4.3);
+      tl.to("#phone", { opacity: 0, y: -40, duration: 0.4, ease: "power2.in" }, 4.3)
+
+      // Scene 2: check cards
+        .set("#checks", { opacity: 1 }, 4.8)
+        .fromTo("#checks .check", { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, stagger: 0.35, ease: "back.out(1.4)" }, 4.9)
+        .fromTo("#checks .check svg", { scale: 0, transformOrigin: "center" }, { scale: 1, duration: 0.45, stagger: 0.35, ease: "back.out(2.4)" }, 5.4);
+      lines("#t2", 5.2);
+      out("#t2", 9.1);
+      tl.to("#checks", { opacity: 0, x: 60, duration: 0.4, ease: "power2.in" }, 9.1)
+
+      // Scene 3: price tag with check
+        .set("#tag", { opacity: 1 }, 9.6)
+        .fromTo("#tag-body", { y: -200, rotation: -20, opacity: 0, transformOrigin: "260px 210px" }, { y: 0, rotation: 0, opacity: 1, duration: 0.8, ease: "back.out(1.5)" }, 9.7)
+        .to("#tag-body", { rotation: 4, duration: 1.2, yoyo: true, repeat: 2, ease: "sine.inOut" }, 10.6)
+        .fromTo("#tag-check", { scale: 0, transformOrigin: "380px 390px" }, { scale: 1, duration: 0.5, ease: "back.out(2.2)" }, 10.6)
+        .to("#tcheck", { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, 11.0);
+      lines("#t3", 9.9);
+      out("#t3", 14.0);
+      tl.to(["#tag", "#blob"], { opacity: 0, duration: 0.4 }, 14.0)
+
+      // Scene 4: end card
+        .fromTo("#end-kick", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 14.6)
+        .fromTo("#end-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 14.9)
+        .fromTo("#end-addr", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 15.5)
+        .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 15.9)
+        .to("#cta", { scale: 1.04, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

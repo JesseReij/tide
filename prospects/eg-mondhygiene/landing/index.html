@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>TIDE voor Eg-mondhygiëne</title>
+  <meta name="description" content="Een voorstel van TIDE: animaties voor Eg-mondhygiëne Praktijk." />
+  <link rel="stylesheet" href="./tide.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--tide-paper); color: var(--tide-text); font-family: var(--tide-font-body); font-size: 18px; line-height: 1.6; }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    section { padding: 88px 0; }
+
+    h1, h2, h3, .display { font-family: var(--tide-font-display); font-weight: 400; color: var(--tide-ink); line-height: 0.95; letter-spacing: 0.01em; }
+    h1 { font-size: clamp(56px, 9vw, 112px); }
+    h2 { font-size: clamp(44px, 6vw, 72px); margin-bottom: 18px; }
+    h3 { font-size: 30px; line-height: 1; }
+    .accent { color: var(--tide-accent); }
+    .kicker { display: block; font-family: var(--tide-font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tide-label); margin-bottom: 18px; }
+    .lead { font-size: 20px; max-width: 660px; }
+    .placeholder { background: #fff0b8; color: var(--tide-ink); border-radius: 4px; padding: 0 6px; }
+
+    /* Wordmark with wave */
+    .bar .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; padding-bottom: 22px; }
+    .wordmark { display: inline-block; text-decoration: none; color: var(--tide-ink); }
+    .wordmark span { display: block; font-family: var(--tide-font-display); font-size: 44px; line-height: 0.9; letter-spacing: 0.04em; }
+    .wordmark svg { display: block; width: 84px; height: 10px; margin-top: 4px; }
+    .wave-draw path { stroke-dasharray: 520; stroke-dashoffset: 520; animation: draw var(--tide-wave-draw) var(--tide-wave-ease) .2s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { .wave-draw path { animation: none; stroke-dashoffset: 0; } }
+    .bar .kicker { margin: 0; text-align: right; }
+
+    /* Hero */
+    .hero { padding: 56px 0 72px; }
+    .hero h1 { max-width: 900px; }
+    .hero .lead { margin-top: 26px; }
+    .btn { display: inline-block; margin-top: 32px; padding: 16px 30px; border-radius: 999px; background: var(--tide-accent); color: var(--tide-paper); font-weight: 600; text-decoration: none; }
+    .btn:hover { background: #a9531f; }
+
+    /* Videos */
+    .videos { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: start; margin-top: 8px; }
+    .video-card { background: var(--tide-surface); border-radius: 28px; padding: 18px; }
+    .video-card video { display: block; width: 100%; border-radius: 16px; background: var(--tide-ink); }
+    .v-45 video { aspect-ratio: 4 / 5; }
+    .v-916 video { aspect-ratio: 9 / 16; max-height: 640px; margin: 0 auto; width: auto; max-width: 100%; }
+    .video-card .kicker { margin: 16px 4px 4px; }
+    .video-card h3 { margin: 0 4px 6px; }
+    .video-card p { margin: 0 4px 6px; font-size: 16px; }
+
+    /* Getij band with wavy edges */
+    .band { position: relative; background: var(--tide-accent); color: var(--tide-paper); padding: 70px 0; margin: 40px 0; }
+    .band::before, .band::after { content: ""; position: absolute; left: 0; right: 0; height: 24px; background-repeat: repeat-x; background-size: 200px 24px; }
+    .band::before { top: -23px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'%3E%3Cpath d='M0,12 C33,0 67,0 100,12 C133,24 167,24 200,12 L200,24 L0,24 Z' fill='%23C1622F'/%3E%3C/svg%3E"); }
+    .band::after { bottom: -23px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'%3E%3Cpath d='M0,12 C33,0 67,0 100,12 C133,24 167,24 200,12 L200,0 L0,0 Z' fill='%23C1622F'/%3E%3C/svg%3E"); }
+    .band h2 { color: var(--tide-paper); max-width: 900px; }
+    .band .kicker { color: #f6d9c6; }
+    .band p { color: #fbe9dd; max-width: 700px; font-size: 19px; }
+    .band small { display: block; margin-top: 14px; font-size: 14px; color: #f6d9c6; }
+    .band small a { color: #f6d9c6; }
+
+    /* Why */
+    .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .why div { background: var(--tide-surface); border-radius: 22px; padding: 28px; }
+    .why h3 { margin-bottom: 10px; }
+    .why p { font-size: 17px; }
+
+    /* Ideas */
+    .ideas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; margin-top: 36px; counter-reset: idea; }
+    .idea { display: grid; grid-template-columns: 56px 1fr; gap: 0 12px; padding: 22px 0; border-top: 1px solid var(--tide-surface-2); }
+    .idea::before { counter-increment: idea; content: counter(idea, decimal-leading-zero); font-family: var(--tide-font-mono); font-size: 15px; color: var(--tide-accent); padding-top: 6px; }
+    .idea h3 { font-size: 26px; }
+    .idea .meta { font-family: var(--tide-font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-label); margin: 4px 0 6px; }
+    .idea p { font-size: 16px; }
+    .idea .made { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: var(--tide-accent); color: var(--tide-paper); letter-spacing: 0.06em; }
+
+    /* Price (dark) */
+    .dark { background: var(--tide-ink); color: #cfc6b8; }
+    .dark h2, .dark h3 { color: var(--tide-paper); }
+    .dark .kicker { color: #a59b8b; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .col { border-radius: 26px; padding: 32px; }
+    .col.old { border: 1px solid #3a332b; }
+    .col.new { background: var(--tide-paper); color: var(--tide-text); }
+    .col.new h3 { color: var(--tide-ink); }
+    .col .big { font-family: var(--tide-font-display); font-size: clamp(48px, 6vw, 68px); line-height: 1; margin-top: 14px; }
+    .col.old .big { color: var(--tide-paper); }
+    .col.new .big { color: var(--tide-accent); }
+    .col .unit { font-family: var(--tide-font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin: 8px 0 22px; opacity: 0.8; }
+    .col ul { list-style: none; }
+    .col li { padding: 11px 0; border-top: 1px solid rgba(142, 132, 116, 0.35); font-size: 17px; }
+    .sources { margin-top: 20px; font-size: 13px; color: #a59b8b; }
+    .sum { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .sum > div { border-radius: 22px; padding: 24px 32px; border: 1px dashed #4a4238; }
+    .sum .display { font-size: clamp(40px, 5vw, 56px); color: var(--tide-paper); margin-top: -6px; }
+    .sum .display.accent { color: var(--tide-accent); }
+
+    .tiers { margin-top: 10px; }
+    .tier { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(142, 132, 116, 0.35); }
+    .tier b { display: block; color: var(--tide-ink); font-weight: 600; }
+    .tier span { display: block; font-size: 15px; }
+    .tier .tp { font-family: var(--tide-font-display); font-size: 40px; color: var(--tide-ink); line-height: 1; }
+    .tier.best { background: var(--tide-surface); border: 0; border-radius: 16px; padding: 14px 16px; margin-top: 6px; }
+    .tier.best .tp { color: var(--tide-accent); font-size: 48px; }
+    .tier-note { margin-top: 14px; font-size: 15px; }
+    .how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .how > div { background: var(--tide-surface); border-radius: 22px; padding: 26px; }
+    .how .kicker { color: var(--tide-accent); margin-bottom: 10px; }
+    .how h3 { margin-bottom: 10px; }
+    .how p { font-size: 16px; }
+    .how-more { margin-top: 24px; font-size: 18px; max-width: 700px; }
+    .local { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: center; margin-top: 36px; padding: 30px 32px; border-radius: 22px; border: 2px solid var(--tide-accent); }
+    .local h3 { font-size: 40px; }
+    .local .kicker { color: var(--tide-accent); margin-bottom: 8px; }
+    .local p { font-size: 17px; }
+    @media (max-width: 860px) { .local { grid-template-columns: 1fr; } }
+    @media (max-width: 1000px) { .how { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .how { grid-template-columns: 1fr; } }
+
+    /* Packages */
+    .packages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .pkg { background: var(--tide-surface); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; }
+    .pkg.featured { background: var(--tide-ink); color: #cfc6b8; }
+    .pkg.featured h3 { color: var(--tide-paper); }
+    .pkg h3 { font-size: 36px; }
+    .pkg .price { font-family: var(--tide-font-display); font-size: 40px; color: var(--tide-accent); line-height: 1; margin-top: 14px; }
+    .pkg .per { font-family: var(--tide-font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-label); margin: 6px 0 16px; }
+    .pkg p { font-size: 16px; }
+    .pkg .level { font-family: var(--tide-font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-accent); margin-bottom: 10px; }
+    .pkg .pkg-sub { font-size: 15px; margin-bottom: 12px; }
+    .pkg .inherit { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .pkg.featured .inherit { color: var(--tide-paper); }
+    .pkg ul { list-style: none; }
+    .pkg li { font-size: 15px; padding: 8px 0 8px 18px; border-top: 1px solid rgba(142, 132, 116, 0.3); position: relative; }
+    .pkg li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: var(--tide-accent); }
+    .pkg .note a { color: inherit; }
+    .pkg-rule { margin-top: 20px; font-size: 17px; max-width: 760px; }
+    .pkg .note { margin-top: auto; padding-top: 16px; font-size: 14px; color: var(--tide-label); }
+    .extras { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .extras span { font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--tide-surface-2); }
+    .extras b { color: var(--tide-ink); font-weight: 600; }
+    @media (max-width: 1000px) { .packages { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .packages, .sum { grid-template-columns: 1fr; } }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .step { border-top: 6px solid var(--tide-accent); background: var(--tide-surface); border-radius: 0 0 22px 22px; padding: 26px; }
+    .step .kicker { margin-bottom: 10px; color: var(--tide-accent); }
+    .step h3 { margin-bottom: 8px; }
+    .step p { font-size: 16px; }
+
+    /* CTA and footer */
+    .cta { text-align: center; }
+    .cta .lead { margin: 0 auto; }
+    .contact-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+    .contact-btns .btn { margin-top: 0; }
+    .btn-ghost { background: transparent; color: var(--tide-ink); border: 2px solid var(--tide-ink); }
+    .btn-ghost:hover { background: var(--tide-ink); color: var(--tide-paper); }
+    .cta svg { width: 160px; height: 14px; margin: 0 auto 26px; display: block; }
+    footer { border-top: 1px solid var(--tide-surface-2); padding: 28px 0 44px; font-size: 14px; color: var(--tide-label); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .videos, .compare, .ideas, .why, .steps { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .bar .kicker { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="wrap">
+      <a class="wordmark" href="https://tidecollective.nl" aria-label="TIDE Collective">
+        <span>TIDE</span>
+        <svg class="wave-draw" viewBox="0 0 400 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0,16 C33,4 67,4 100,16 C133,28 167,28 200,16 C233,4 267,4 300,16 C333,28 367,28 400,16" stroke="#C1622F" stroke-width="6" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke" /></svg>
+      </a>
+      <span class="kicker">Voorstel voor Eg-mondhygiëne Praktijk</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Van uw buren op Lamoraalweg 57</span>
+      <h1>Persoonlijke mondzorg. <span class="accent">Nu ook in beeld.</span></h1>
+      <p class="lead">We hebben alvast twee animaties voor u gemaakt, in uw eigen kleuren. De eerste legt uw zorg bij bloedend of terugtrekkend tandvlees uit. De tweede laat zien waarom patiënten bij u zo makkelijk terechtkunnen.</p>
+      <a class="btn" href="#contact">Plan een kennismaking</a>
+    </div>
+  </section>
+
+  <section style="padding-top: 0">
+    <div class="wrap">
+      <div class="videos">
+        <div class="video-card v-45">
+          <video src="./paro.mp4" poster="./poster-paro.jpg" controls muted playsinline loop preload="metadata"></video>
+          <span class="kicker">01 · Informatief · 4:5 · 24 sec</span>
+          <h3>Bloedend tandvlees?</h3>
+          <p>Uw specialiteit parodontitis, rustig uitgelegd. Voor uw website en uw feed.</p>
+        </div>
+        <div class="video-card v-916">
+          <video src="./direct.mp4" poster="./poster-direct.jpg" controls muted playsinline loop preload="metadata"></video>
+          <span class="kicker">02 · Toegang en prijs · 9:16 · 20 sec</span>
+          <h3>Geen balie, geen wachtlijst</h3>
+          <p>Een reel met uw beloftes en de landelijke tarieven. Voor Instagram.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <span class="kicker">Waarom het werkt</span>
+      <h2>Mensen onthouden beter wat ze zien.</h2>
+      <p>In 11 van de 15 gerandomiseerde studies onthielden patiënten zorginformatie beter na een animatievideo dan met alleen de gewone uitleg.</p>
+      <small>Bron: systematische review in JMIR, 2024. Onderzoek bij mensen, 2.454 patiënten. <a href="https://www.jmir.org/2024/1/e58306">jmir.org</a></small>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <span class="kicker">Wat het u oplevert</span>
+      <h2>Uw sterkste belofte staat in een plaatje.</h2>
+      <p class="lead">Geen balie, maar direct een mondhygiënist aan de lijn. Dat maakt u uniek in de regio. Op uw website staat het in tekst en in vier vaste plaatjes. Een korte animatie laat het in een paar seconden zien.</p>
+      <div class="why">
+        <div><h3>Sneller begrepen</h3><p>Wat parodontitis is, en waarom tandsteen weg moet, wordt in één keer duidelijk.</p></div>
+        <div><h3>Meer bereik</h3><p>Bewegend beeld valt op tussen de foto's in de tijdlijn van Instagram en Facebook.</p></div>
+        <div><h3>Minder spanning</h3><p>Een rustige uitleg vooraf helpt patiënten die opzien tegen een bezoek.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0">
+    <div class="wrap">
+      <span class="kicker">Tien ideeën</span>
+      <h2>Wat we nog meer voor u kunnen maken</h2>
+      <p class="lead">Alles is gebaseerd op wat u nu al aanbiedt. U kiest wat past.</p>
+      <div class="ideas">
+        <div class="idea"><div><h3>Bloedend tandvlees?</h3><div class="meta">4:5 · 24 sec<span class="made">Gemaakt</span></div><p>Uw specialiteit parodontitis, rustig uitgelegd.</p></div></div>
+        <div class="idea"><div><h3>Geen balie, geen wachtlijst</h3><div class="meta">Reel 9:16 · 20 sec<span class="made">Gemaakt</span></div><p>Uw beloftes en de landelijke tarieven in één reel.</p></div></div>
+        <div class="idea"><div><h3>Bang voor de mondhygiënist?</h3><div class="meta">4:5 · 30 sec</div><p>Uw rustige aanpak voor patiënten die opzien tegen een bezoek.</p></div></div>
+        <div class="idea"><div><h3>Uw mond, de spiegel van uw lichaam</h3><div class="meta">4:5 · 30 sec</div><p>De link met diabetes en hart- en vaatziekten.</p></div></div>
+        <div class="idea"><div><h3>Zo poetst u tussen uw tanden</h3><div class="meta">Reel 9:16 · 20 sec</div><p>Preventie als vaste rubriek op Instagram.</p></div></div>
+        <div class="idea"><div><h3>Het eerste bezoek van uw kind</h3><div class="meta">4:5 · 30 sec</div><p>Voor ouders, zodat kinderen ontspannen binnenkomen.</p></div></div>
+        <div class="idea"><div><h3>Maak kennis met ons team</h3><div class="meta">1:1 · 20 sec</div><p>Mariëtte, Noëlla en Tara: de vaste gezichten van uw praktijk.</p></div></div>
+        <div class="idea"><div><h3>Wat kost een behandeling?</h3><div class="meta">4:5 · 30 sec</div><p>De landelijke tarieven en de aanvullende verzekering, helder uitgelegd.</p></div></div>
+        <div class="idea"><div><h3>De stem aan de telefoon</h3><div class="meta">Reel 9:16 · 15 sec</div><p>Uw mooiste zin, als korte reel.</p></div></div>
+        <div class="idea"><div><h3>Wat is tandsteen?</h3><div class="meta">4:5 · 30 sec</div><p>Een vraag die u vaak krijgt, in beeld beantwoord.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="wrap">
+      <span class="kicker">Prijs</span>
+      <h2>Animatie was duur. Dat hoeft niet meer.</h2>
+      <p class="lead">Een animatie van een minuut kost bij een traditionele studio al snel duizenden euro's. Bij TIDE betaalt u een fractie, voor dezelfde kwaliteit. Hieronder leest u waarom dat kan.</p>
+      <div class="compare">
+        <div class="col old">
+          <h3>Traditionele studio</h3>
+          <div class="big">€2.500 tot €7.500</div>
+          <div class="unit">Voor een animatie van 1 minuut</div>
+          <ul>
+            <li>Meestal 3 tot 6 weken doorlooptijd</li>
+            <li>Het script betaalt u vaak apart</li>
+            <li>Elke nieuwe video begint weer bij nul</li>
+          </ul>
+        </div>
+        <div class="col new">
+          <h3>TIDE</h3>
+          <div class="tiers">
+            <div class="tier"><div><b>Start</b><span>Uw huisstijl vastgelegd, met uw eerste animatie</span></div><div class="tp">€300</div></div>
+            <div class="tier"><div><b>Losse animatie</b><span>Elke volgende animatie</span></div><div class="tp">€95</div></div>
+            <div class="tier best"><div><b>Pakket van 10</b><span>Tien animaties, de start zit erbij</span></div><div class="tp">€750</div></div>
+          </div>
+          <p class="tier-note">Het script schrijven wij. U betaalt geen extra kosten.</p>
+        </div>
+      </div>
+      <div class="sum">
+        <div><span class="kicker">Tien animaties bij een traditionele studio</span><div class="display">Vanaf €25.000</div></div>
+        <div><span class="kicker">Tien animaties bij TIDE</span><div class="display accent">€750</div></div>
+      </div>
+      <p class="sources">Rekenvoorbeeld: tien animaties van een minuut, bij een studio voor de laagste prijs van €2.500 per stuk. Bij TIDE kiest u het pakket van 10. Los zou u €1.155 betalen: €300 start met de eerste animatie, plus negen keer €95. Alle prijzen exclusief btw.</p>
+      <p class="sources">Prijzen van traditionele studio's komen uit openbare prijsinformatie van Nederlandse animatiestudio's uit 2025 en 2026, exclusief btw. Onder andere <a href="https://www.animation-agency.nl/blog/wat-kost-een-animatiefilmpje-2026">Animation Agency</a>, <a href="https://searchlab.nl/kosten/wat-kost-video-marketing">Searchlab</a> en <a href="https://donkermedia.nl/kennisbank/animatievideo-laten-maken-kosten/">Donker Media</a>. Doorlooptijd volgens <a href="https://www.animation-agency.nl/en/blog/wat-is-de-doorlooptijd-van-een-animatie">Animation Agency</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="kicker">Hoe kan dit zo betaalbaar?</span>
+      <h2>Slimme techniek. <span class="accent">Echte mensen.</span></h2>
+      <p class="lead">TIDE werkt met de nieuwste technieken voor animatie en ontwerp. Het werk dat een studio vroeger met de hand deed, doet de techniek nu voor een groot deel. Wij houden tijd over voor het idee en de afwerking. Dat voordeel ziet u terug in de prijs.</p>
+      <div class="how">
+        <div><span class="kicker">01</span><h3>Animatie in code</h3><p>Wij bouwen animaties met code in plaats van frame voor frame met de hand. Een wijziging is snel gedaan. De nieuwe versie staat binnen een paar minuten klaar.</p></div>
+        <div><span class="kicker">02</span><h3>Uw huisstijl als basis</h3><p>We leggen uw kleuren en lettertype één keer vast. Elke nieuwe animatie bouwt daarop verder en begint dus niet bij nul.</p></div>
+        <div><span class="kicker">03</span><h3>AI als assistent</h3><p>AI helpt ons met het vooronderzoek en de eerste opzet van een script. Zo gaat onze tijd naar wat echt telt: een goed verhaal voor uw praktijk.</p></div>
+        <div><span class="kicker">04</span><h3>Mensen keuren alles</h3><p>Niets gaat de deur uit zonder controle door ons team. U ziet pas iets als wij er zelf tevreden over zijn.</p></div>
+      </div>
+      <p class="how-more">Zo werken we niet alleen aan animaties. Ook websites, posts en visuals maken we op deze manier, voor een eerlijke prijs.</p>
+      <div class="local">
+        <div><span class="kicker">Gewoon naast de deur</span><h3>Wij zijn uw buren</h3></div>
+        <p>TIDE zit op Lamoraalweg 57, naast uw praktijk. Net als u kiezen wij voor klein en persoonlijk. U belt niet met een groot bureau in de Randstad, maar met mensen uit de regio. Even langskomen voor een kop koffie of een nieuwe opname? Dat regelen we snel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="kicker">Meer dan animatie</span>
+      <h2>Zo kan TIDE u verder helpen</h2>
+      <p class="lead">Animaties zijn een goed begin. Wilt u dat wij uw social media en zichtbaarheid helemaal oppakken? Dan kiest u een van onze pakketten.</p>
+      <div class="packages">
+        <div class="pkg">
+          <span class="level">Level 01 · Het startpunt</span>
+          <h3>Basis</h3>
+          <div class="price">€650</div>
+          <div class="per">Eenmalig</div>
+          <p class="pkg-sub">In één ochtend van "geen idee" naar een plan.</p>
+          <ul>
+            <li>Een uur shoot op locatie, plus een uur nabewerking</li>
+            <li>Interview, analyse van uw concurrenten en uw positionering in één document</li>
+            <li>Vier posts klaar om te plaatsen, met tekst en hashtags</li>
+          </ul>
+          <p class="note"><a href="https://kaashuis-tromp-rapport1.vercel.app/">Bekijk een voorbeeld: Kaashuis Tromp</a></p>
+        </div>
+        <div class="pkg">
+          <span class="level">Level 02</span>
+          <h3>Getij</h3>
+          <div class="price">€195</div>
+          <div class="per">Per maand</div>
+          <p class="pkg-sub">Klein en licht. Geregeld zichtbaar, zonder poespas.</p>
+          <ul>
+            <li>6 posts per maand, met ontwerp en tekst</li>
+            <li>Een vaste contentkalender, u keurt goed</li>
+            <li>Elke maand een check-in van een kwartier</li>
+            <li>Een fotoshoot boekt u los bij</li>
+          </ul>
+        </div>
+        <div class="pkg featured">
+          <span class="level">Level 02 · Meest gekozen</span>
+          <h3>Stroming</h3>
+          <div class="price">€595</div>
+          <div class="per">Per maand</div>
+          <p class="pkg-sub">Vast publiceren, met vers beeld elk kwartaal.</p>
+          <span class="inherit">Alles uit Getij, plus:</span>
+          <ul>
+            <li>8 tot 10 posts per maand</li>
+            <li>Elk kwartaal een shoot van 2 uur, met nabewerking</li>
+            <li>Elke maand een evaluatie en sparren</li>
+            <li>3 vormgevingsuren voor drukwerk of online</li>
+          </ul>
+          <p class="note">Met €250 korting op Basis</p>
+        </div>
+        <div class="pkg">
+          <span class="level">Level 02</span>
+          <h3>Springtij</h3>
+          <div class="price">€1.995</div>
+          <div class="per">Per maand</div>
+          <p class="pkg-sub">Volledig ontzorgd. Wij bouwen vast aan uw merk.</p>
+          <span class="inherit">Alles uit Stroming, plus:</span>
+          <ul>
+            <li>10 tot 12 posts per maand</li>
+            <li>Elke maand een shoot van 2 uur</li>
+            <li>Elke maand 2 tot 4 reels, een nieuwsbrief en een landingspagina</li>
+            <li>Een eigen WhatsApp-lijn voor directe vragen</li>
+          </ul>
+          <p class="note">Met €450 korting op Basis</p>
+        </div>
+      </div>
+      <p class="pkg-rule">Elke samenwerking begint met de Basis. Daarna kiest u een maandpakket. U schaalt elke maand op of af, zonder jaarcontract.</p>
+      <div class="extras">
+        <span><b>Basisshoot</b> €250</span>
+        <span><b>Interview</b> €150</span>
+        <span><b>Losse visual</b> €45</span>
+        <span><b>Landingspagina</b> €220</span>
+        <span><b>Nieuwsbrief</b> €220 per maand</span>
+      </div>
+      <p class="sources" style="color: var(--tide-label)">Alle prijzen exclusief btw. Meer informatie op <a href="https://tidecollective.nl/diensten">tidecollective.nl/diensten</a>.</p>
+    </div>
+  </section>
+
+  <section style="padding-top: 0">
+    <div class="wrap">
+      <span class="kicker">Zo werkt het</span>
+      <h2>In drie stappen online</h2>
+      <div class="steps">
+        <div class="step"><span class="kicker">Stap 1</span><h3>Kennismaking</h3><p>Wij lopen even bij u binnen, of u komt een deur verder bij ons op de koffie. Samen kiezen we welke animaties het meeste opleveren.</p></div>
+        <div class="step"><span class="kicker">Stap 2</span><h3>Script en eerste versie</h3><p>U krijgt de tekst en een eerste versie. Uw feedback geeft u via een eenvoudige link.</p></div>
+        <div class="step"><span class="kicker">Stap 3</span><h3>Goedkeuren en plaatsen</h3><p>Na uw akkoord plannen wij de posts in. U kunt de bestanden ook zelf plaatsen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact" style="padding-top: 20px">
+    <div class="wrap">
+      <svg viewBox="0 0 400 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0,16 C33,4 67,4 100,16 C133,28 167,28 200,16 C233,4 267,4 300,16 C333,28 367,28 400,16" stroke="#C1622F" stroke-width="6" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke" /></svg>
+      <h2>Zullen we de eerste samen maken?</h2>
+      <p class="lead">TIDE is een creatieve studio uit Egmond aan den Hoef. Bel of mail ons voor een vrijblijvende kennismaking.</p>
+      <div class="contact-btns">
+        <a class="btn" href="mailto:hallo@tidecollective.nl?subject=Animaties%20voor%20Eg-mondhygi%C3%ABne">hallo@tidecollective.nl</a>
+        <a class="btn btn-ghost" href="tel:+31610321699">Bel Jesse: 06 10 32 16 99</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>Dit is een voorstel van TIDE. Eg-mondhygiëne Praktijk heeft deze pagina niet gemaakt en is er niet bij betrokken. Namen en kleuren komen van hun openbare website.</span>
+      <span>Website door <a href="https://tidecollective.nl">TIDE</a></span>
+    </div>
+  </footer>
+</body>
+</html>

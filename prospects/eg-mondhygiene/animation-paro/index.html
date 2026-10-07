@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <script src="./gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 600; src: url("./fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Montserrat"; font-weight: 700; src: url("./fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("./fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Lato"; font-weight: 400; src: url("./fonts/lato-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Lato"; font-weight: 700; src: url("./fonts/lato-latin-700-normal.woff2") format("woff2"); }
+
+      /* Client style: Eg-mondhygiëne Praktijk (from their CSS) */
+      :root { --teal: #2f6f73; --sage: #8faea0; --beige: #e6ded6; --bg: #f6f7f5; --text: #3a4540; --tan: #c8b8a6; --gum: #eeb0a8; --red: #c9483f; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--bg); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Lato", sans-serif; color: var(--text); }
+
+      #blob { position: absolute; left: 140px; top: 60px; width: 800px; height: 700px; border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%; background: var(--beige); }
+
+      .txt { position: absolute; left: 90px; right: 90px; top: 820px; text-align: center; }
+      .headline { font-family: "Montserrat", sans-serif; font-size: 74px; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+      .sub { margin-top: 26px; font-size: 40px; line-height: 1.35; color: #5d6a64; }
+      .line { display: block; overflow: hidden; padding-bottom: 8px; }
+      .line > span { display: inline-block; }
+      .t { color: var(--teal); }
+      .s { color: var(--sage); }
+
+      #tooth { position: absolute; left: 290px; top: 140px; width: 500px; height: 560px; }
+      #mirror { position: absolute; left: 0; top: 150px; width: 1080px; height: 560px; }
+
+      #years { position: absolute; left: 0; right: 0; top: 200px; text-align: center; }
+      #years .num { font-family: "Montserrat", sans-serif; font-size: 380px; line-height: 1; font-weight: 800; color: var(--teal); letter-spacing: -0.04em; }
+      #years .lbl { font-family: "Montserrat", sans-serif; font-size: 56px; font-weight: 700; color: var(--sage); margin-top: 10px; }
+
+      #end { position: absolute; left: 90px; right: 90px; top: 230px; text-align: center; }
+      #end-title { font-family: "Montserrat", sans-serif; font-size: 92px; line-height: 1.04; font-weight: 800; color: var(--teal); letter-spacing: -0.03em; }
+      #end-addr { margin-top: 44px; font-size: 42px; color: var(--text); line-height: 1.45; }
+      #cta { display: inline-block; margin-top: 60px; padding: 30px 58px; border-radius: 16px; background: var(--sage); color: var(--bg); font-family: "Montserrat", sans-serif; font-size: 46px; font-weight: 700; }
+      #end-note { margin-top: 28px; font-size: 36px; font-style: italic; color: #5d6a64; }
+
+      #demo-label { position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; font-size: 28px; color: #7d8a84; letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1080" data-height="1350">
+      <div id="blob" class="clip" data-start="0" data-duration="19.4" data-track-index="0"></div>
+
+      <!-- Tooth with gum -->
+      <svg id="tooth" class="clip" data-start="0" data-duration="15.6" data-track-index="1" viewBox="0 0 500 560">
+        <defs><clipPath id="below-gum"><rect x="0" y="0" width="500" height="560" /></clipPath></defs>
+        <!-- roots -->
+        <path d="M150 300 C150 420 170 520 205 520 C235 520 240 430 250 380 C260 430 265 520 295 520 C330 520 350 420 350 300 Z" fill="#fbf6ee" stroke="var(--teal)" stroke-width="8" stroke-linejoin="round" />
+        <!-- crown -->
+        <path d="M130 120 C130 50 200 40 250 70 C300 40 370 50 370 120 C370 200 355 260 350 310 L150 310 C145 260 130 200 130 120 Z" fill="#ffffff" stroke="var(--teal)" stroke-width="8" stroke-linejoin="round" />
+        <path d="M185 110 C200 90 225 88 240 100" stroke="var(--beige)" stroke-width="12" stroke-linecap="round" fill="none" />
+        <!-- gum -->
+        <g id="gum">
+          <path id="gum-shape" d="M40 560 L40 300 C90 270 120 240 150 245 C190 252 220 290 250 290 C280 290 310 252 350 245 C380 240 410 270 460 300 L460 560 Z" fill="var(--gum)" />
+        </g>
+        <g id="drops" opacity="0">
+          <path class="drop" d="M210 300 C210 300 196 322 196 332 C196 341 202 347 210 347 C218 347 224 341 224 332 C224 322 210 300 210 300 Z" fill="var(--red)" />
+          <path class="drop" d="M292 296 C292 296 280 314 280 323 C280 330 285 335 292 335 C299 335 304 330 304 323 C304 314 292 296 292 296 Z" fill="var(--red)" />
+        </g>
+        <g id="sparkles" opacity="0" fill="var(--sage)">
+          <path d="M410 90 L418 112 L440 120 L418 128 L410 150 L402 128 L380 120 L402 112 Z" />
+          <path d="M90 170 L95 184 L109 189 L95 194 L90 208 L85 194 L71 189 L85 184 Z" />
+        </g>
+      </svg>
+      <div id="t1" class="txt clip" data-start="0" data-duration="5" data-track-index="2">
+        <div class="headline"><span class="line"><span>Bloedend of</span></span><span class="line"><span><span class="t">terugtrekkend</span> tandvlees?</span></span></div>
+      </div>
+
+      <!-- Mirror scene -->
+      <svg id="mirror" class="clip" data-start="5" data-duration="5.4" data-track-index="3" viewBox="0 0 1080 560">
+        <circle cx="540" cy="280" r="150" fill="#ffffff" stroke="var(--teal)" stroke-width="10" />
+        <path d="M465 270 Q540 340 615 270" stroke="var(--teal)" stroke-width="14" stroke-linecap="round" fill="none" />
+        <rect x="485" y="268" width="110" height="18" rx="9" fill="var(--beige)" />
+        <g id="m-heart"><circle cx="230" cy="280" r="110" fill="#ffffff" stroke="var(--sage)" stroke-width="8" /><path d="M230 330 C190 302 175 282 175 262 C175 246 188 234 203 234 C215 234 224 240 230 250 C236 240 245 234 257 234 C272 234 285 246 285 262 C285 282 270 302 230 330 Z" fill="var(--red)" opacity="0.85" /></g>
+        <g id="m-drop"><circle cx="850" cy="280" r="110" fill="#ffffff" stroke="var(--sage)" stroke-width="8" /><path d="M850 215 C850 215 810 268 810 292 C810 315 828 332 850 332 C872 332 890 315 890 292 C890 268 850 215 850 215 Z" fill="var(--teal)" opacity="0.85" /></g>
+        <line id="ml1" x1="390" y1="280" x2="340" y2="280" stroke="var(--sage)" stroke-width="8" stroke-dasharray="8 12" stroke-linecap="round" />
+        <line id="ml2" x1="690" y1="280" x2="740" y2="280" stroke="var(--sage)" stroke-width="8" stroke-dasharray="8 12" stroke-linecap="round" />
+      </svg>
+      <div id="t2" class="txt clip" data-start="5.2" data-duration="5.2" data-track-index="4">
+        <div class="headline" style="font-size: 68px"><span class="line"><span>Uw mond is de spiegel</span></span><span class="line"><span>van uw <span class="t">lichaam</span>.</span></span></div>
+        <p class="sub"><span class="line"><span>Mondgezondheid heeft invloed op diabetes</span></span><span class="line"><span>en hart- en vaatziekten.</span></span></p>
+      </div>
+
+      <div id="t3" class="txt clip" data-start="10.4" data-duration="5.2" data-track-index="5">
+        <div class="headline" style="font-size: 68px"><span class="line"><span>Wij helpen uw gebit</span></span><span class="line"><span>weer <span class="t">stabiel en gezond</span>.</span></span></div>
+      </div>
+
+      <!-- Years -->
+      <div id="years" class="clip" data-start="15.6" data-duration="3.9" data-track-index="6">
+        <div class="lbl" style="margin: 0 0 -10px">bijna</div>
+        <div class="num"><span id="count">0</span></div>
+        <div class="lbl">jaar in Egmond</div>
+      </div>
+      <div id="t4" class="txt clip" data-start="15.6" data-duration="3.9" data-track-index="7">
+        <div class="headline" style="font-size: 64px"><span class="line"><span>Bijna 25 jaar ervaring,</span></span><span class="line"><span>altijd een <span class="t">vertrouwd gezicht</span>.</span></span></div>
+      </div>
+
+      <!-- End card -->
+      <div id="end" class="clip" data-start="19.5" data-duration="4.5" data-track-index="8">
+        <div id="end-title">Eg-mondhygiëne<br />Praktijk</div>
+        <div id="end-addr">Lamoraalweg 55a<br />Egmond aan den Hoef</div>
+        <div id="cta">Bel 072 506 95 70</div>
+        <div id="end-note">Direct een mondhygiënist aan de lijn</div>
+      </div>
+
+      <div id="demo-label" class="clip" data-start="0" data-duration="24" data-track-index="9">Voorbeeld door TIDE · tidecollective.nl</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const lines = (sel, t) => tl.fromTo(sel + " .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.12, ease: "power3.out" }, t);
+      const out = (sel, t) => tl.to(sel + " .line > span", { yPercent: -110, duration: 0.4, stagger: 0.05, ease: "power2.in" }, t);
+      gsap.set(["#mirror", "#years"], { opacity: 0 });
+      const counter = { v: 0 };
+
+      tl.fromTo("#blob", { scale: 0.9, rotation: -4 }, { scale: 1.04, rotation: 4, duration: 19.4, ease: "sine.inOut" }, 0)
+
+      // Scene 1: gum turns red and recedes, drops fall
+        .fromTo("#tooth", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.1)
+        .to("#gum-shape", { fill: "#d9776d", duration: 1.2, ease: "sine.inOut" }, 1.2)
+        .to("#gum", { y: 40, duration: 1.4, ease: "sine.inOut" }, 1.4)
+        .set("#drops", { opacity: 1 }, 2.4)
+        .fromTo("#drops .drop", { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.9, stagger: 0.3, ease: "power1.in", repeat: 1 }, 2.4);
+      lines("#t1", 0.5);
+      out("#t1", 4.5);
+      tl.to("#tooth", { opacity: 0, scale: 0.85, transformOrigin: "50% 50%", duration: 0.4, ease: "power2.in" }, 4.6)
+
+      // Scene 2: mouth as mirror of the body
+        .set("#mirror", { opacity: 1 }, 5.0)
+        .fromTo("#mirror circle:first-of-type", { scale: 0.5, opacity: 0, transformOrigin: "540px 280px" }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" }, 5.0)
+        .fromTo(["#m-heart", "#m-drop"], { scale: 0.5, opacity: 0, transformOrigin: "center" }, { scale: 1, opacity: 1, duration: 0.6, stagger: 0.2, ease: "back.out(1.6)" }, 5.6)
+        .fromTo(["#ml1", "#ml2"], { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.2)
+        .to(["#ml1", "#ml2"], { strokeDashoffset: -40, duration: 3, ease: "none" }, 6.2);
+      lines("#t2", 5.3);
+      out("#t2", 9.9);
+      tl.to("#mirror", { opacity: 0, duration: 0.4 }, 10.0)
+
+      // Scene 3: gum heals
+        .set("#drops", { opacity: 0 }, 10.3)
+        .to("#tooth", { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 10.4)
+        .to("#gum", { y: 0, duration: 1.6, ease: "sine.inOut" }, 11.0)
+        .to("#gum-shape", { fill: "#eeb0a8", duration: 1.6, ease: "sine.inOut" }, 11.0)
+        .set("#sparkles", { opacity: 1 }, 12.6)
+        .fromTo("#sparkles path", { scale: 0, transformOrigin: "center" }, { scale: 1, duration: 0.5, stagger: 0.2, ease: "back.out(2.5)" }, 12.6)
+        .to("#sparkles path", { rotation: 45, duration: 1.4, ease: "sine.inOut", stagger: 0.1 }, 13.2);
+      lines("#t3", 10.6);
+      out("#t3", 15.1);
+      tl.to("#tooth", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, 15.1)
+
+      // Scene 4: years
+        .set("#years", { opacity: 1 }, 15.6)
+        .fromTo("#years", { y: 30 }, { y: 0, duration: 0.6, ease: "power3.out" }, 15.6)
+        .to(counter, { v: 25, duration: 1.6, ease: "power2.out", onUpdate: () => { document.getElementById("count").textContent = Math.round(counter.v); } }, 15.7);
+      lines("#t4", 15.9);
+      out("#t4", 19.0);
+      tl.to("#years", { opacity: 0, duration: 0.4 }, 19.0)
+        .to("#blob", { opacity: 0, duration: 0.4 }, 19.0)
+
+      // Scene 5: end card
+        .fromTo("#end-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 19.6)
+        .fromTo("#end-addr", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 20.2)
+        .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 20.6)
+        .fromTo("#end-note", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 21.1)
+        .to("#cta", { scale: 1.04, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 21.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
