@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="nl" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="./gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Saira"; font-weight: 500; src: url("./fonts/saira-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Saira"; font-weight: 600; src: url("./fonts/saira-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Saira"; font-weight: 700; src: url("./fonts/saira-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Saira"; font-weight: 800; src: url("./fonts/saira-latin-800-normal.woff2") format("woff2"); }
+
+      /* Brand tokens, picked from a screenshot of jdejongdierenartsen.nl. Check against their CSS later. */
+      :root {
+        --bg: #f4f9f0;
+        --ink: #1e2a1b;
+        --brand: #3a8c22;
+        --brand-bright: #56be2f;
+        --brand-soft: #dff0d4;
+        --accent: #f0a32e;
+        --card: #ffffff;
+        --muted: #5f6e5b;
+        --fur: #c98a4b;
+        --fur-dark: #8f5a2b;
+        --grey: #d9d4cc;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+      #root {
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        font-family: "Saira", Inter, sans-serif; color: var(--ink);
+      }
+
+      /* Soft background blobs */
+      .blob { position: absolute; border-radius: 50%; background: var(--brand-soft); }
+      #blob1 { width: 900px; height: 900px; left: -260px; top: -200px; }
+      #blob2 { width: 700px; height: 700px; right: -300px; bottom: -160px; background: #c9e8b6; }
+
+      /* Dog */
+      #dog { position: absolute; left: 290px; top: 360px; width: 500px; height: 500px; transform-origin: 50% 60%; }
+
+      /* Text blocks */
+      .scene-text { position: absolute; left: 90px; right: 90px; top: 1030px; text-align: center; }
+      .headline { font-size: 104px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; }
+      .sub { margin-top: 36px; font-size: 50px; line-height: 1.25; font-weight: 500; color: var(--muted); }
+      .line { display: block; overflow: hidden; padding-bottom: 8px; }
+      .line > span { display: inline-block; }
+      .brand-word { color: var(--brand); }
+
+      /* Scene 2: heart line */
+      #ecg { position: absolute; left: 0; top: 760px; width: 1080px; height: 240px; }
+      #lens { position: absolute; left: 0; top: 770px; width: 200px; height: 200px; }
+
+      /* Scene 3: cards */
+      #cards { position: absolute; left: 90px; right: 90px; top: 1430px; display: flex; gap: 36px; justify-content: center; }
+      .card {
+        width: 272px; height: 230px; border-radius: 40px; background: var(--card);
+        box-shadow: 0 24px 60px rgba(29, 43, 42, 0.12);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .card svg { width: 120px; height: 120px; }
+
+      /* Scene 4: price */
+      #price { position: absolute; left: 0; right: 0; top: 330px; text-align: center; }
+      #tag {
+        display: inline-block; padding: 18px 44px; border-radius: 999px; background: var(--accent);
+        color: #fff; font-size: 46px; font-weight: 700; letter-spacing: 0.02em;
+      }
+      #old { position: relative; display: inline-block; margin-top: 70px; font-size: 130px; font-weight: 600; color: var(--muted); }
+      #strike { position: absolute; left: -12px; top: 52%; height: 12px; width: calc(100% + 24px); background: var(--accent); border-radius: 6px; transform-origin: 0 50%; }
+      #new { display: block; margin-top: 10px; font-size: 330px; line-height: 1; font-weight: 800; letter-spacing: -0.05em; color: var(--brand); }
+      #price-note { margin-top: 30px; font-size: 52px; font-weight: 600; }
+
+      /* Scene 5: end card */
+      #end { position: absolute; left: 90px; right: 90px; top: 1000px; text-align: center; }
+      #end-name { font-size: 84px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+      #end-name small { display: block; font-size: 44px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 14px; }
+      #cta {
+        display: inline-block; margin-top: 70px; padding: 34px 70px; border-radius: 999px;
+        background: var(--brand); color: #fff; font-size: 56px; font-weight: 700;
+      }
+      #phone { margin-top: 40px; font-size: 50px; font-weight: 600; color: var(--brand); }
+
+      /* Small "demo by Tide" label */
+      #demo-label { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 30px; color: var(--muted); letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <div id="blob1" class="blob clip" data-start="0" data-duration="20" data-track-index="0"></div>
+      <div id="blob2" class="blob clip" data-start="0" data-duration="20" data-track-index="1"></div>
+
+      <!-- Dog head, simple shapes -->
+      <svg id="dog" class="clip" data-start="0" data-duration="20" data-track-index="2" viewBox="0 0 500 500">
+        <g id="ear-l" style="transform-origin: 150px 150px">
+          <ellipse cx="120" cy="250" rx="70" ry="140" fill="var(--fur-dark)" transform="rotate(18 120 250)" />
+        </g>
+        <g id="ear-r" style="transform-origin: 350px 150px">
+          <ellipse cx="380" cy="250" rx="70" ry="140" fill="var(--fur-dark)" transform="rotate(-18 380 250)" />
+        </g>
+        <circle cx="250" cy="240" r="165" fill="var(--fur)" />
+        <ellipse id="muzzle-grey" cx="250" cy="330" rx="118" ry="92" fill="var(--grey)" opacity="0" />
+        <ellipse cx="250" cy="330" rx="100" ry="76" fill="#e8c9a3" />
+        <g id="eyes">
+          <circle cx="190" cy="215" r="20" fill="var(--ink)" />
+          <circle cx="310" cy="215" r="20" fill="var(--ink)" />
+          <circle cx="197" cy="208" r="6" fill="#fff" />
+          <circle cx="317" cy="208" r="6" fill="#fff" />
+        </g>
+        <path id="brow-l" d="M160 175 Q190 160 220 172" stroke="var(--grey)" stroke-width="10" stroke-linecap="round" fill="none" opacity="0" />
+        <path id="brow-r" d="M280 172 Q310 160 340 175" stroke="var(--grey)" stroke-width="10" stroke-linecap="round" fill="none" opacity="0" />
+        <ellipse cx="250" cy="300" rx="36" ry="26" fill="var(--ink)" />
+        <path id="mouth" d="M215 345 Q250 375 285 345" stroke="var(--ink)" stroke-width="9" stroke-linecap="round" fill="none" />
+        <g id="tongue" opacity="0">
+          <path d="M232 352 Q250 410 268 352 Z" fill="#e57a7a" />
+        </g>
+      </svg>
+
+      <!-- Scene 1 -->
+      <div id="s1" class="scene-text clip" data-start="0" data-duration="3.6" data-track-index="3">
+        <div class="headline">
+          <span class="line"><span>Uw maatje</span></span>
+          <span class="line"><span>wordt <span class="brand-word">ouder.</span></span></span>
+        </div>
+      </div>
+
+      <!-- Scene 2 -->
+      <svg id="ecg" class="clip" data-start="3.4" data-duration="4.3" data-track-index="4" viewBox="0 0 1080 240">
+        <path id="ecg-path" d="M0 120 H300 L340 120 L370 40 L410 210 L450 70 L480 120 H640 L670 120 L700 50 L735 195 L770 120 H1080"
+          stroke="var(--brand)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </svg>
+      <svg id="lens" class="clip" data-start="3.4" data-duration="4.3" data-track-index="5" viewBox="0 0 200 200">
+        <circle cx="85" cy="85" r="60" fill="rgba(255,255,255,0.55)" stroke="var(--ink)" stroke-width="14" />
+        <line x1="130" y1="130" x2="185" y2="185" stroke="var(--ink)" stroke-width="20" stroke-linecap="round" />
+      </svg>
+      <div id="s2" class="scene-text clip" data-start="3.6" data-duration="4.0" data-track-index="6">
+        <div class="headline">
+          <span class="line"><span>Niet alles zie je</span></span>
+          <span class="line"><span>aan de <span class="brand-word">buitenkant.</span></span></span>
+        </div>
+      </div>
+
+      <!-- Scene 3 -->
+      <div id="s3" class="scene-text clip" data-start="7.6" data-duration="4.5" data-track-index="7">
+        <div class="headline"><span class="line"><span class="brand-word">Seniorscreening</span></span></div>
+        <p class="sub"><span class="line"><span>Meer inzicht in de gezondheid</span></span><span class="line"><span>van uw huisdier.</span></span></p>
+      </div>
+      <div id="cards" class="clip" data-start="7.6" data-duration="4.5" data-track-index="8">
+        <div class="card">
+          <svg viewBox="0 0 120 120"><path d="M60 104 C20 76 8 54 8 36 C8 20 20 10 34 10 C46 10 55 17 60 27 C65 17 74 10 86 10 C100 10 112 20 112 36 C112 54 100 76 60 104 Z" fill="var(--accent)" /></svg>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 120 120"><g fill="var(--brand)"><ellipse cx="60" cy="80" rx="30" ry="25" /><circle cx="26" cy="50" r="13" /><circle cx="46" cy="28" r="13" /><circle cx="74" cy="28" r="13" /><circle cx="94" cy="50" r="13" /></g></svg>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 120 120"><path d="M14 22 H106 Q112 22 112 28 V78 Q112 84 106 84 H48 L26 104 V84 H14 Q8 84 8 78 V28 Q8 22 14 22 Z" fill="var(--ink)" /><g fill="#fff"><circle cx="38" cy="53" r="7" /><circle cx="60" cy="53" r="7" /><circle cx="82" cy="53" r="7" /></g></svg>
+        </div>
+      </div>
+
+      <!-- Scene 4 -->
+      <div id="price" class="clip" data-start="12.1" data-duration="4.0" data-track-index="9">
+        <div id="tag">TIJDELIJK</div><br />
+        <div id="old">€199<div id="strike"></div></div>
+        <span id="new">€139</span>
+        <p id="price-note">voor de seniorscreening</p>
+      </div>
+
+      <!-- Scene 5 -->
+      <div id="end" class="clip" data-start="16.0" data-duration="4.0" data-track-index="10">
+        <div id="end-name">J. de Jong Dierenartsen<small>Uw dierenarts in Heiloo e.o.</small></div>
+        <div id="cta">Maak een afspraak</div>
+        <div id="phone">072 - 53 316 06</div>
+      </div>
+
+      <div id="demo-label" class="clip" data-start="0" data-duration="20" data-track-index="11">Voorbeeld door Tide · tide.nl</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const ecgLen = Math.ceil(document.querySelector("#ecg-path").getTotalLength()) + 20;
+      gsap.set("#ecg-path", { strokeDasharray: ecgLen, strokeDashoffset: ecgLen });
+
+      // Scene 1: dog appears, muzzle turns grey
+      tl.fromTo("#blob1", { scale: 0.85 }, { scale: 1.05, duration: 20, ease: "sine.inOut" }, 0)
+        .fromTo("#blob2", { scale: 1.1 }, { scale: 0.9, duration: 20, ease: "sine.inOut" }, 0)
+        .fromTo("#dog", { scale: 0.4, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.9, ease: "back.out(1.6)" }, 0.1)
+        .fromTo("#s1 .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.15, ease: "power3.out" }, 0.5)
+        .to(["#muzzle-grey", "#brow-l", "#brow-r"], { opacity: 1, duration: 1.4, ease: "sine.inOut" }, 1.4)
+        .to("#dog", { rotation: -4, duration: 1.2, ease: "sine.inOut" }, 1.8)
+        .to("#s1 .line > span", { yPercent: -110, duration: 0.45, stagger: 0.08, ease: "power2.in" }, 3.1)
+
+      // Scene 2: dog moves up, heart line is drawn, lens follows it
+        .to("#dog", { y: -150, scale: 0.72, rotation: 0, duration: 0.8, ease: "power2.inOut" }, 3.3)
+        .to("#ecg-path", { strokeDashoffset: 0, duration: 2.2, ease: "power1.inOut" }, 3.6)
+        .fromTo("#lens", { x: -40, opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.6)
+        .to("#lens", { x: 900, duration: 2.6, ease: "power1.inOut" }, 3.6)
+        .fromTo("#s2 .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.15, ease: "power3.out" }, 4.0)
+        .to(["#ecg", "#lens"], { opacity: 0, duration: 0.4 }, 7.1)
+        .to("#s2 .line > span", { yPercent: -110, duration: 0.45, stagger: 0.08, ease: "power2.in" }, 7.1)
+
+      // Scene 3: screening title and three cards
+        .fromTo("#s3 .line > span", { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.12, ease: "power3.out" }, 7.7)
+        .fromTo("#cards .card", { y: 160, opacity: 0, rotation: 6 }, { y: 0, opacity: 1, rotation: 0, duration: 0.7, stagger: 0.18, ease: "back.out(1.5)" }, 8.3)
+        .to("#cards .card", { y: -14, duration: 0.9, stagger: 0.15, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.4)
+        .to(["#s3", "#cards"], { opacity: 0, y: 40, duration: 0.45, ease: "power2.in" }, 11.6)
+        .to("#dog", { opacity: 0, scale: 0.5, duration: 0.5, ease: "power2.in" }, 11.6)
+
+      // Scene 4: price
+        .fromTo("#tag", { scale: 0, rotation: -8 }, { scale: 1, rotation: -3, duration: 0.6, ease: "back.out(2)" }, 12.2)
+        .fromTo("#old", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 12.4)
+        .fromTo("#strike", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, 13.0)
+        .fromTo("#new", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }, 13.4)
+        .fromTo("#price-note", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 14.0)
+        .to("#price", { opacity: 0, y: -40, duration: 0.45, ease: "power2.in" }, 15.6)
+
+      // Scene 5: happy dog and end card
+        .fromTo("#dog", { y: 40, scale: 0.6, opacity: 0, rotation: 0 }, { y: -40, scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.6)" }, 16.0)
+        .to("#tongue", { opacity: 1, duration: 0.3 }, 16.5)
+        .to("#ear-l", { rotation: 10, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut" }, 16.6)
+        .to("#ear-r", { rotation: -10, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut" }, 16.6)
+        .to("#dog", { rotation: 6, duration: 0.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.8)
+        .fromTo("#end-name", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 16.5)
+        .fromTo("#cta", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 17.0)
+        .fromTo("#phone", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 17.5)
+        .to("#cta", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 18.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
