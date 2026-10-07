@@ -9,6 +9,9 @@ for (const [slug, dir] of Object.entries(map)) {
   if (slug.startsWith("_")) continue;
   if (!existsSync(`${dir}/index.html`)) throw new Error(`Missing ${dir}/index.html for /${slug}`);
   cpSync(dir, `dist/${slug}`, { recursive: true });
+  // Fixed base path, so assets load on /slug and /slug/, on this project and via tidecollective.nl.
+  const page = `dist/${slug}/index.html`;
+  writeFileSync(page, readFileSync(page, "utf8").replace("<head>", `<head>\n  <base href="/${slug}/" />`));
   console.log(`/${slug} <- ${dir}`);
 }
 

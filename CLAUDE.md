@@ -81,7 +81,7 @@ Address: Lamoraalweg 57, Egmond aan den Hoef. Email: **hallo@tidecollective.nl**
 
 - `brand/tide/`: TIDE house style (tokens, fonts, wave)
 - `research/`: research we can reuse (for example `pricing.md`, animation prices in NL)
-- `voorstel.json` + `scripts/build-voorstel.mjs` + `vercel.json`: the site voorstel.tidecollective.nl. Add a line to `voorstel.json` to put a new pitch online at `/<slug>/`. Vercel project: `tide-voorstel`.
+- `voorstel.json` + `scripts/build-voorstel.mjs` + `vercel.json`: the site voorstel.tidecollective.nl. Add a line to `voorstel.json` to put a new pitch online at `/<slug>/`. Vercel project: `tide-voorstel`. Pages are also shown on tidecollective.nl/<slug> through a route rule in Vercel project `tide-v1` (Routes). For a new slug, add a rewrite there too: `^/<slug>/?(.*)$` to `https://tide-voorstel.vercel.app/<slug>/$1`. Ask Jesse before you promote route changes, because that changes the live main site.
 - `prospects/<client>/`: one folder per prospect, with `research.md`, `ideas.md`, scripts, `animation-*/` (HyperFrames projects) and `landing/` (pitch page)
 
 ## Pitch format per prospect
