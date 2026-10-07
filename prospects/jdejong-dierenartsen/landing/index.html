@@ -145,6 +145,10 @@
     /* CTA and footer */
     .cta { text-align: center; }
     .cta .lead { margin: 0 auto; }
+    .contact-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+    .contact-btns .btn { margin-top: 0; }
+    .btn-ghost { background: transparent; color: var(--tide-ink); border: 2px solid var(--tide-ink); }
+    .btn-ghost:hover { background: var(--tide-ink); color: var(--tide-paper); }
     .cta svg { width: 160px; height: 14px; margin: 0 auto 26px; display: block; }
     footer { border-top: 1px solid var(--tide-surface-2); padding: 28px 0 44px; font-size: 14px; color: var(--tide-label); }
     footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -352,7 +356,10 @@
       <svg viewBox="0 0 400 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0,16 C33,4 67,4 100,16 C133,28 167,28 200,16 C233,4 267,4 300,16 C333,28 367,28 400,16" stroke="#C1622F" stroke-width="6" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke" /></svg>
       <h2>Zullen we de eerste samen maken?</h2>
       <p class="lead">TIDE is een creatieve studio uit Egmond aan den Hoef. Bel of mail ons voor een vrijblijvende kennismaking.</p>
-      <a class="btn" href="#contact"><span class="placeholder">[e-mail of telefoon van TIDE]</span></a>
+      <div class="contact-btns">
+        <a class="btn" href="mailto:hello@tidecollective.nl?subject=Animaties%20voor%20J.%20de%20Jong%20Dierenartsen">hello@tidecollective.nl</a>
+        <a class="btn btn-ghost" href="tel:+31610321699">Bel Jesse: 06 10 32 16 99</a>
+      </div>
     </div>
   </section>
 
