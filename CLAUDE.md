@@ -57,7 +57,7 @@ Every client starts with Basis. It unlocks the three monthly packages. Each pack
 - **Stroming (EUR 595/month, most chosen):** Getij plus 8 to 10 posts per month, a 2-hour shoot every quarter with editing, monthly evaluation, 3 design hours.
 - **Springtij (EUR 1,995/month):** Stroming plus 10 to 12 posts per month, a 2-hour shoot every month, 2 to 4 reels plus a newsletter and a landing page per month, a dedicated WhatsApp line.
 
-Address: Lamoraalweg 57, Egmond aan den Hoef. The website uses hallo@tidecollective.nl. Jesse gave hello@tidecollective.nl for pitches (check which one is right). Jesse's phone: 06 10 32 16 99.
+Address: Lamoraalweg 57, Egmond aan den Hoef. Email: **hallo@tidecollective.nl** (not hello@). Jesse's phone: 06 10 32 16 99.
 
 ## Quality checklist (do this before you show anything)
 
