@@ -48,7 +48,16 @@ The house style lives in `brand/tide/`. Read `brand/tide/README.md` before you d
 **Animation (set by Jesse, 7 Oct 2026):** EUR 300 one-time start, then EUR 95 per animation, or a bundle of 10 animations for EUR 750 (we assume the start is included). All excl. BTW.
 We read the start as: we set up the client's style and make the first animation. Still to confirm with Jesse: is the first animation included in the EUR 300, and what is the maximum length for EUR 95?
 
-The package contents (Basis, Getij, Stroming, Springtij) are not in this repo yet. Do not guess them. Ask, or copy them from tidecollective.nl/diensten.
+### Package contents (from tidecollective.nl, 7 Oct 2026)
+
+Every client starts with Basis. It unlocks the three monthly packages. Each package includes everything from the one before. Scale up or down per month, no yearly contract.
+
+- **Basis (EUR 650 once):** 1 hour shoot on location plus 1 hour editing. Strategy document with interview, competitor analysis and positioning. Four posts ready to publish, with text and hashtags. Example: https://kaashuis-tromp-rapport1.vercel.app/
+- **Getij (EUR 195/month):** 6 posts per month with design and text. Fixed content calendar, client approves. 15-minute check-in per month. No shoot (book separately).
+- **Stroming (EUR 595/month, most chosen):** Getij plus 8 to 10 posts per month, a 2-hour shoot every quarter with editing, monthly evaluation, 3 design hours.
+- **Springtij (EUR 1,995/month):** Stroming plus 10 to 12 posts per month, a 2-hour shoot every month, 2 to 4 reels plus a newsletter and a landing page per month, a dedicated WhatsApp line.
+
+Address: Lamoraalweg 57, Egmond aan den Hoef. The website uses hallo@tidecollective.nl. Jesse gave hello@tidecollective.nl for pitches (check which one is right). Jesse's phone: 06 10 32 16 99.
 
 ## Quality checklist (do this before you show anything)
 

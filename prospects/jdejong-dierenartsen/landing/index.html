@@ -128,6 +128,15 @@
     .pkg .price { font-family: var(--tide-font-display); font-size: 40px; color: var(--tide-accent); line-height: 1; margin-top: 14px; }
     .pkg .per { font-family: var(--tide-font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-label); margin: 6px 0 16px; }
     .pkg p { font-size: 16px; }
+    .pkg .level { font-family: var(--tide-font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-accent); margin-bottom: 10px; }
+    .pkg .pkg-sub { font-size: 15px; margin-bottom: 12px; }
+    .pkg .inherit { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .pkg.featured .inherit { color: var(--tide-paper); }
+    .pkg ul { list-style: none; }
+    .pkg li { font-size: 15px; padding: 8px 0 8px 18px; border-top: 1px solid rgba(142, 132, 116, 0.3); position: relative; }
+    .pkg li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: var(--tide-accent); }
+    .pkg .note a { color: inherit; }
+    .pkg-rule { margin-top: 20px; font-size: 17px; max-width: 760px; }
     .pkg .note { margin-top: auto; padding-top: 16px; font-size: 14px; color: var(--tide-label); }
     .extras { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
     .extras span { font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--tide-surface-2); }
@@ -302,32 +311,63 @@
       <p class="lead">Animaties zijn een goed begin. Wilt u dat wij uw social media en zichtbaarheid helemaal oppakken? Dan kiest u een van onze pakketten.</p>
       <div class="packages">
         <div class="pkg">
+          <span class="level">Level 01 · Het startpunt</span>
           <h3>Basis</h3>
           <div class="price">€650</div>
           <div class="per">Eenmalig</div>
-          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="pkg-sub">In één ochtend van "geen idee" naar een plan.</p>
+          <ul>
+            <li>Een uur shoot op locatie, plus een uur nabewerking</li>
+            <li>Interview, analyse van uw concurrenten en uw positionering in één document</li>
+            <li>Vier posts klaar om te plaatsen, met tekst en hashtags</li>
+          </ul>
+          <p class="note"><a href="https://kaashuis-tromp-rapport1.vercel.app/">Bekijk een voorbeeld: Kaashuis Tromp</a></p>
         </div>
         <div class="pkg">
+          <span class="level">Level 02</span>
           <h3>Getij</h3>
           <div class="price">€195</div>
           <div class="per">Per maand</div>
-          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="pkg-sub">Klein en licht. Geregeld zichtbaar, zonder poespas.</p>
+          <ul>
+            <li>6 posts per maand, met ontwerp en tekst</li>
+            <li>Een vaste contentkalender, u keurt goed</li>
+            <li>Elke maand een check-in van een kwartier</li>
+            <li>Een fotoshoot boekt u los bij</li>
+          </ul>
         </div>
         <div class="pkg featured">
+          <span class="level">Level 02 · Meest gekozen</span>
           <h3>Stroming</h3>
           <div class="price">€595</div>
           <div class="per">Per maand</div>
-          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="pkg-sub">Vast publiceren, met vers beeld elk kwartaal.</p>
+          <span class="inherit">Alles uit Getij, plus:</span>
+          <ul>
+            <li>8 tot 10 posts per maand</li>
+            <li>Elk kwartaal een shoot van 2 uur, met nabewerking</li>
+            <li>Elke maand een evaluatie en sparren</li>
+            <li>3 vormgevingsuren voor drukwerk of online</li>
+          </ul>
           <p class="note">Met €250 korting op Basis</p>
         </div>
         <div class="pkg">
+          <span class="level">Level 02</span>
           <h3>Springtij</h3>
           <div class="price">€1.995</div>
           <div class="per">Per maand</div>
-          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="pkg-sub">Volledig ontzorgd. Wij bouwen vast aan uw merk.</p>
+          <span class="inherit">Alles uit Stroming, plus:</span>
+          <ul>
+            <li>10 tot 12 posts per maand</li>
+            <li>Elke maand een shoot van 2 uur</li>
+            <li>Elke maand 2 tot 4 reels, een nieuwsbrief en een landingspagina</li>
+            <li>Een eigen WhatsApp-lijn voor directe vragen</li>
+          </ul>
           <p class="note">Met €450 korting op Basis</p>
         </div>
       </div>
+      <p class="pkg-rule">Elke samenwerking begint met de Basis. Daarna kiest u een maandpakket. U schaalt elke maand op of af, zonder jaarcontract.</p>
       <div class="extras">
         <span><b>Basisshoot</b> €250</span>
         <span><b>Interview</b> €150</span>
