@@ -97,6 +97,28 @@
     .sum .display { font-size: clamp(40px, 5vw, 56px); color: var(--tide-paper); margin-top: -6px; }
     .sum .display.accent { color: var(--tide-accent); }
 
+    .tiers { margin-top: 10px; }
+    .tier { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(142, 132, 116, 0.35); }
+    .tier b { display: block; color: var(--tide-ink); font-weight: 600; }
+    .tier span { display: block; font-size: 15px; }
+    .tier .tp { font-family: var(--tide-font-display); font-size: 40px; color: var(--tide-ink); line-height: 1; }
+    .tier.best { background: var(--tide-surface); border: 0; border-radius: 16px; padding: 14px 16px; margin-top: 6px; }
+    .tier.best .tp { color: var(--tide-accent); font-size: 48px; }
+    .tier-note { margin-top: 14px; font-size: 15px; }
+    .how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .how > div { background: var(--tide-surface); border-radius: 22px; padding: 26px; }
+    .how .kicker { color: var(--tide-accent); margin-bottom: 10px; }
+    .how h3 { margin-bottom: 10px; }
+    .how p { font-size: 16px; }
+    .how-more { margin-top: 24px; font-size: 18px; max-width: 700px; }
+    .local { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: center; margin-top: 36px; padding: 30px 32px; border-radius: 22px; border: 2px solid var(--tide-accent); }
+    .local h3 { font-size: 40px; }
+    .local .kicker { color: var(--tide-accent); margin-bottom: 8px; }
+    .local p { font-size: 17px; }
+    @media (max-width: 860px) { .local { grid-template-columns: 1fr; } }
+    @media (max-width: 1000px) { .how { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .how { grid-template-columns: 1fr; } }
+
     /* Packages */
     .packages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
     .pkg { background: var(--tide-surface); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; }
@@ -147,7 +169,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="kicker">Animatie voor dierenartsen in Heiloo en omgeving</span>
+      <span class="kicker">Van TIDE uit Egmond aan den Hoef, voor uw praktijk in Heiloo</span>
       <h1>Zorg uitleggen is lastig. <span class="accent">Laten zien niet.</span></h1>
       <p class="lead">We hebben alvast twee animaties voor u gemaakt, in uw eigen kleuren. De eerste legt uw orthopedie uit. De tweede maakt uw actie voor de seniorscreening zichtbaar op social media.</p>
       <a class="btn" href="#contact">Plan een kennismaking</a>
@@ -219,7 +241,7 @@
     <div class="wrap">
       <span class="kicker">Prijs</span>
       <h2>Animatie was duur. Dat hoeft niet meer.</h2>
-      <p class="lead">Wij maken animaties met code in plaats van frame voor frame met de hand. Uw huisstijl leggen we één keer vast. Daarna is elke nieuwe animatie veel minder werk, en dat voordeel geven we aan u door.</p>
+      <p class="lead">Een animatie van een minuut kost bij een traditionele studio al snel duizenden euro's. Bij TIDE betaalt u een fractie, voor dezelfde kwaliteit. Hieronder leest u waarom dat kan.</p>
       <div class="compare">
         <div class="col old">
           <h3>Traditionele studio</h3>
@@ -233,21 +255,39 @@
         </div>
         <div class="col new">
           <h3>TIDE</h3>
-          <div class="big">€95 per animatie</div>
-          <div class="unit">Na een eenmalige start van €300</div>
-          <ul>
-            <li>De start is €300. Daarvoor leggen we uw huisstijl vast en maken we uw eerste animatie.</li>
-            <li>Elke volgende animatie kost €95</li>
-            <li>Het script schrijven wij</li>
-          </ul>
+          <div class="tiers">
+            <div class="tier"><div><b>Start</b><span>Uw huisstijl vastgelegd, met uw eerste animatie</span></div><div class="tp">€300</div></div>
+            <div class="tier"><div><b>Losse animatie</b><span>Elke volgende animatie</span></div><div class="tp">€95</div></div>
+            <div class="tier best"><div><b>Pakket van 10</b><span>Tien animaties, de start zit erbij</span></div><div class="tp">€750</div></div>
+          </div>
+          <p class="tier-note">Het script schrijven wij. U betaalt geen extra kosten.</p>
         </div>
       </div>
       <div class="sum">
         <div><span class="kicker">Tien animaties bij een traditionele studio</span><div class="display">Vanaf €25.000</div></div>
-        <div><span class="kicker">Tien animaties bij TIDE</span><div class="display accent">€1.155</div></div>
+        <div><span class="kicker">Tien animaties bij TIDE</span><div class="display accent">€750</div></div>
       </div>
-      <p class="sources">Rekenvoorbeeld: tien animaties van een minuut, bij een studio voor de laagste prijs van €2.500 per stuk. Bij TIDE: €300 start met de eerste animatie, plus negen keer €95. Alle prijzen exclusief btw.</p>
+      <p class="sources">Rekenvoorbeeld: tien animaties van een minuut, bij een studio voor de laagste prijs van €2.500 per stuk. Bij TIDE kiest u het pakket van 10. Los zou u €1.155 betalen: €300 start met de eerste animatie, plus negen keer €95. Alle prijzen exclusief btw.</p>
       <p class="sources">Prijzen van traditionele studio's komen uit openbare prijsinformatie van Nederlandse animatiestudio's uit 2025 en 2026, exclusief btw. Onder andere <a href="https://www.animation-agency.nl/blog/wat-kost-een-animatiefilmpje-2026">Animation Agency</a>, <a href="https://searchlab.nl/kosten/wat-kost-video-marketing">Searchlab</a> en <a href="https://donkermedia.nl/kennisbank/animatievideo-laten-maken-kosten/">Donker Media</a>. Doorlooptijd volgens <a href="https://www.animation-agency.nl/en/blog/wat-is-de-doorlooptijd-van-een-animatie">Animation Agency</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="kicker">Hoe kan dit zo betaalbaar?</span>
+      <h2>Slimme techniek. <span class="accent">Echte mensen.</span></h2>
+      <p class="lead">TIDE werkt met de nieuwste technieken voor animatie en ontwerp. Het werk dat een studio vroeger met de hand deed, doet de techniek nu voor een groot deel. Wij houden tijd over voor het idee en de afwerking. Dat voordeel ziet u terug in de prijs.</p>
+      <div class="how">
+        <div><span class="kicker">01</span><h3>Animatie in code</h3><p>Wij bouwen animaties met code in plaats van frame voor frame met de hand. Een wijziging is snel gedaan. De nieuwe versie staat binnen een paar minuten klaar.</p></div>
+        <div><span class="kicker">02</span><h3>Uw huisstijl als basis</h3><p>We leggen uw kleuren en lettertype één keer vast. Elke nieuwe animatie bouwt daarop verder en begint dus niet bij nul.</p></div>
+        <div><span class="kicker">03</span><h3>AI als assistent</h3><p>AI helpt ons met het vooronderzoek en de eerste opzet van een script. Zo gaat onze tijd naar wat echt telt: een goed verhaal voor uw praktijk.</p></div>
+        <div><span class="kicker">04</span><h3>Mensen keuren alles</h3><p>Niets gaat de deur uit zonder controle door ons team. U ziet pas iets als wij er zelf tevreden over zijn.</p></div>
+      </div>
+      <p class="how-more">Zo werken we niet alleen aan animaties. Ook websites, posts en visuals maken we op deze manier, voor een eerlijke prijs.</p>
+      <div class="local">
+        <div><span class="kicker">Gewoon uit de buurt</span><h3>TIDE zit in Egmond aan den Hoef</h3></div>
+        <p>Wij zitten op een paar kilometer van uw praktijk. U belt niet met een groot bureau in de Randstad, maar met mensen uit de regio. Even langskomen voor een kop koffie of een nieuwe opname? Dat regelen we snel.</p>
+      </div>
     </div>
   </section>
 
@@ -300,7 +340,7 @@
       <span class="kicker">Zo werkt het</span>
       <h2>In drie stappen online</h2>
       <div class="steps">
-        <div class="step"><span class="kicker">Stap 1</span><h3>Kennismaking</h3><p>Een kop koffie in Heiloo. We kiezen samen welke animaties het meeste opleveren.</p></div>
+        <div class="step"><span class="kicker">Stap 1</span><h3>Kennismaking</h3><p>We komen langs in Heiloo, of u komt bij ons in Egmond aan den Hoef. Samen kiezen we welke animaties het meeste opleveren.</p></div>
         <div class="step"><span class="kicker">Stap 2</span><h3>Script en eerste versie</h3><p>U krijgt de tekst en een eerste versie. Uw feedback geeft u via een eenvoudige link.</p></div>
         <div class="step"><span class="kicker">Stap 3</span><h3>Goedkeuren en plaatsen</h3><p>Na uw akkoord plannen wij de posts in. U kunt de bestanden ook zelf plaatsen.</p></div>
       </div>
@@ -311,7 +351,7 @@
     <div class="wrap">
       <svg viewBox="0 0 400 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0,16 C33,4 67,4 100,16 C133,28 167,28 200,16 C233,4 267,4 300,16 C333,28 367,28 400,16" stroke="#C1622F" stroke-width="6" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke" /></svg>
       <h2>Zullen we de eerste samen maken?</h2>
-      <p class="lead">TIDE is een creatieve studio uit de regio. Bel of mail ons voor een vrijblijvende kennismaking.</p>
+      <p class="lead">TIDE is een creatieve studio uit Egmond aan den Hoef. Bel of mail ons voor een vrijblijvende kennismaking.</p>
       <a class="btn" href="#contact"><span class="placeholder">[e-mail of telefoon van TIDE]</span></a>
     </div>
   </section>
