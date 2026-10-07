@@ -44,7 +44,10 @@ The house style lives in `brand/tide/`. Read `brand/tide/README.md` before you d
 | Landingspagina | EUR 220 |
 | Nieuwsbrief | EUR 220/month |
 
-There is **no official animation price yet**. Never put one on a client page without Jesse's confirmation.
+**Animation (set by Jesse, 7 Oct 2026):** EUR 300 one-time start, then EUR 95 per animation, excl. BTW.
+We read the start as: we set up the client's style and make the first animation. Still to confirm with Jesse: is the first animation included in the EUR 300, and what is the maximum length for EUR 95?
+
+The package contents (Basis, Getij, Stroming, Springtij) are not in this repo yet. Do not guess them. Ask, or copy them from tidecollective.nl/diensten.
 
 ## Quality checklist (do this before you show anything)
 

@@ -92,6 +92,26 @@
     .col ul { list-style: none; }
     .col li { padding: 11px 0; border-top: 1px solid rgba(142, 132, 116, 0.35); font-size: 17px; }
     .sources { margin-top: 20px; font-size: 13px; color: #a59b8b; }
+    .sum { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .sum > div { border-radius: 22px; padding: 24px 32px; border: 1px dashed #4a4238; }
+    .sum .display { font-size: clamp(40px, 5vw, 56px); color: var(--tide-paper); margin-top: -6px; }
+    .sum .display.accent { color: var(--tide-accent); }
+
+    /* Packages */
+    .packages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+    .pkg { background: var(--tide-surface); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; }
+    .pkg.featured { background: var(--tide-ink); color: #cfc6b8; }
+    .pkg.featured h3 { color: var(--tide-paper); }
+    .pkg h3 { font-size: 36px; }
+    .pkg .price { font-family: var(--tide-font-display); font-size: 40px; color: var(--tide-accent); line-height: 1; margin-top: 14px; }
+    .pkg .per { font-family: var(--tide-font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide-label); margin: 6px 0 16px; }
+    .pkg p { font-size: 16px; }
+    .pkg .note { margin-top: auto; padding-top: 16px; font-size: 14px; color: var(--tide-label); }
+    .extras { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .extras span { font-size: 15px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--tide-surface-2); }
+    .extras b { color: var(--tide-ink); font-weight: 600; }
+    @media (max-width: 1000px) { .packages { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .packages, .sum { grid-template-columns: 1fr; } }
 
     /* Steps */
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
@@ -213,20 +233,69 @@
         </div>
         <div class="col new">
           <h3>TIDE</h3>
-          <div class="big"><span class="placeholder">€ [prijs]</span></div>
-          <div class="unit">Voor een animatie van 1 minuut</div>
+          <div class="big">€95 per animatie</div>
+          <div class="unit">Na een eenmalige start van €300</div>
           <ul>
-            <li>Eerste versie binnen <span class="placeholder">[aantal]</span> werkdagen</li>
-            <li>Script en huisstijl zitten erbij</li>
-            <li>Elke volgende video is sneller klaar</li>
+            <li>De start is €300. Daarvoor leggen we uw huisstijl vast en maken we uw eerste animatie.</li>
+            <li>Elke volgende animatie kost €95</li>
+            <li>Het script schrijven wij</li>
           </ul>
         </div>
       </div>
+      <div class="sum">
+        <div><span class="kicker">Tien animaties bij een traditionele studio</span><div class="display">Vanaf €25.000</div></div>
+        <div><span class="kicker">Tien animaties bij TIDE</span><div class="display accent">€1.155</div></div>
+      </div>
+      <p class="sources">Rekenvoorbeeld: tien animaties van een minuut, bij een studio voor de laagste prijs van €2.500 per stuk. Bij TIDE: €300 start met de eerste animatie, plus negen keer €95. Alle prijzen exclusief btw.</p>
       <p class="sources">Prijzen van traditionele studio's komen uit openbare prijsinformatie van Nederlandse animatiestudio's uit 2025 en 2026, exclusief btw. Onder andere <a href="https://www.animation-agency.nl/blog/wat-kost-een-animatiefilmpje-2026">Animation Agency</a>, <a href="https://searchlab.nl/kosten/wat-kost-video-marketing">Searchlab</a> en <a href="https://donkermedia.nl/kennisbank/animatievideo-laten-maken-kosten/">Donker Media</a>. Doorlooptijd volgens <a href="https://www.animation-agency.nl/en/blog/wat-is-de-doorlooptijd-van-een-animatie">Animation Agency</a>.</p>
     </div>
   </section>
 
   <section>
+    <div class="wrap">
+      <span class="kicker">Meer dan animatie</span>
+      <h2>Zo kan TIDE u verder helpen</h2>
+      <p class="lead">Animaties zijn een goed begin. Wilt u dat wij uw social media en zichtbaarheid helemaal oppakken? Dan kiest u een van onze pakketten.</p>
+      <div class="packages">
+        <div class="pkg">
+          <h3>Basis</h3>
+          <div class="price">€650</div>
+          <div class="per">Eenmalig</div>
+          <p><span class="placeholder">[wat zit erin]</span></p>
+        </div>
+        <div class="pkg">
+          <h3>Getij</h3>
+          <div class="price">€195</div>
+          <div class="per">Per maand</div>
+          <p><span class="placeholder">[wat zit erin]</span></p>
+        </div>
+        <div class="pkg featured">
+          <h3>Stroming</h3>
+          <div class="price">€595</div>
+          <div class="per">Per maand</div>
+          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="note">Met €250 korting op Basis</p>
+        </div>
+        <div class="pkg">
+          <h3>Springtij</h3>
+          <div class="price">€1.995</div>
+          <div class="per">Per maand</div>
+          <p><span class="placeholder">[wat zit erin]</span></p>
+          <p class="note">Met €450 korting op Basis</p>
+        </div>
+      </div>
+      <div class="extras">
+        <span><b>Basisshoot</b> €250</span>
+        <span><b>Interview</b> €150</span>
+        <span><b>Losse visual</b> €45</span>
+        <span><b>Landingspagina</b> €220</span>
+        <span><b>Nieuwsbrief</b> €220 per maand</span>
+      </div>
+      <p class="sources" style="color: var(--tide-label)">Alle prijzen exclusief btw. Meer informatie op <a href="https://tidecollective.nl/diensten">tidecollective.nl/diensten</a>.</p>
+    </div>
+  </section>
+
+  <section style="padding-top: 0">
     <div class="wrap">
       <span class="kicker">Zo werkt het</span>
       <h2>In drie stappen online</h2>
